@@ -1,8 +1,17 @@
 require("dotenv").config();
 const recipeRouter = require("express").Router();
-const axios = require("axios");
-const { response } = require("express");
-const { Recipe, Diets, DishType } = require("../../db");
+const {
+  getAPIRecipes,
+  getDBRecipes,
+  createRecipe,
+  saveDiets,
+  dietIdSearch,
+  saveDishes,
+  dishIdSearch,
+  checkRecipe,
+  getAPIRecipeById,
+  getDBRecipesById,
+} = require("../controllers/recipe.controllers");
 
 const { API_KEY } = process.env;
 
@@ -10,53 +19,79 @@ recipeRouter.get("/", async (req, res) => {
   try {
     const { name } = req.query;
 
+    let allRecipes = [];
+
+    let apiRecipes = [] // Lo declaro antes para poder comentarlo y que no busque en la API
+    let dbRecipes = []
+
     // Consulta la API
-    const responseAPI = await axios(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`
-    );
-    let recipes = responseAPI.data.results.map((recipe) => {
-      return {
-        id: recipe.id,
-        title: recipe.title,
-        healthScore: recipe.healthScore,
-        summary: recipe.summary,
-        instructions: recipe.analyzedInstructions,
-        image: recipe.image,
-        diets: recipe.diets,
-        dishTypes: recipe.dishTypes,
-      };
-    });
+    // apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
-    // const responseDB = await Recipe.findAll({
-    //   where: {
-    //     title: {
-    //       [Op.iLike]: `%${name}%`,
-    //     },
-    //   },
-    //   include: [{
-    //     model: DishType,
-    //     through: {
-    //       attributes: [name]
-    //     }
-    //   }],
-    // });
-    // condicional de que exista o no responseDB, teniendo en cuenta que la funcion previa pasa por un await
-    // recipes = recipes.concat(responseDB);
+    dbRecipes = await getDBRecipes(name);
 
-    res.status(200).send(recipes);
+    if (!apiRecipes && !dbRecipes)
+      throw Error("No hay recetas que coincidan con la búsqueda");
+
+    allRecipes = apiRecipes.concat(dbRecipes);
+
+    res.status(200).send(allRecipes);
   } catch (error) {
-    res.status(404).json({error: error});
+    res.status(404).json({ error: error.message });
   }
 });
 
+recipeRouter.get("/:idRecipe", async (req, res) => {
+  try {
+    const { idRecipe } = req.params;
 
-// recipeRouter.get("/", async (req, res) => {
-//     try {
+    let recipe = {};
 
-//     } catch (error) {
-//       res.status(404).send("");
-//     }
-//   });
+    if (Number(idRecipe)) {
+      recipe = await getAPIRecipeById(idRecipe);
+    } else {
+      recipe = await getDBRecipesById(idRecipe);
+    }
+    res.json(recipe);
+  } catch (error) {
+    res.status(404).send("No hay recetas con ese ID");
+  }
+});
+
+recipeRouter.post("/", async (req, res) => {
+  try {
+    const {
+      title,
+      healthScore,
+      summary,
+      instructions,
+      image,
+      diets,
+      dishTypes,
+    } = req.body;
+
+    if (!title || !summary)
+      throw Error("Faltan datos super hiper mega relevantes");
+
+    let dietArr = diets.split(",").map((e) => e.trim());
+    let dishArr = dishTypes.split(",").map((e) => e.trim());
+
+    let recipe = { title, healthScore, summary, instructions, image };
+
+    if (await checkRecipe(title)) {
+      let createdRecipe = await createRecipe(recipe);
+
+      await saveDiets(dietArr);
+      await saveDishes(dishArr);
+
+      await createdRecipe.addDiets(await dietIdSearch(dietArr));
+      await createdRecipe.addDishTypes(await dishIdSearch(dishArr));
+    } else throw Error("La receta ya existe en la base de datos");
+
+    res.status(201).send(`La receta ${title} se ha creado correctamente`);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
 
 module.exports = recipeRouter;
