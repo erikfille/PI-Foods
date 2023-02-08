@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
     "recipe",
     {
       id: {
-        type: DataTypes.UUID, // Chequear las diferencias entre UUIDV1 y UUIDV4
+        type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         allowNull: false,
         primaryKey: true,
