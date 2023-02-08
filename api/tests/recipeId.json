@@ -1,0 +1,361 @@
+{
+  "vegetarian": true,
+  "vegan": true,
+  "glutenFree": false,
+  "dairyFree": true,
+  "veryHealthy": true,
+  "cheap": false,
+  "veryPopular": false,
+  "sustainable": false,
+  "lowFodmap": false,
+  "weightWatcherSmartPoints": 16,
+  "gaps": "no",
+  "preparationMinutes": -1,
+  "cookingMinutes": -1,
+  "aggregateLikes": 2,
+  "healthScore": 100,
+  "creditsText": "foodista.com",
+  "sourceName": "foodista.com",
+  "pricePerServing": 243.81,
+  "extendedIngredients": [
+    {
+      "id": 10111962,
+      "aisle": "Produce;Ethnic Foods;Spices and Seasonings",
+      "image": "dried-arbol-chiles.jpg",
+      "consistency": "SOLID",
+      "name": "bell pepper",
+      "nameClean": "dried chili pepper",
+      "original": "1 Dried hot pepper (opt)",
+      "originalName": "Dried hot pepper (opt)",
+      "amount": 1,
+      "unit": "",
+      "meta": ["dried", "hot", "(opt)"],
+      "measures": {
+        "us": {
+          "amount": 1,
+          "unitShort": "",
+          "unitLong": ""
+        },
+        "metric": {
+          "amount": 1,
+          "unitShort": "",
+          "unitLong": ""
+        }
+      }
+    },
+    {
+      "id": 16057,
+      "aisle": "Pasta and Rice;Canned and Jarred;Ethnic Foods",
+      "image": "chickpeas.png",
+      "consistency": "SOLID",
+      "name": "chickpeas",
+      "nameClean": "chickpeas",
+      "original": "2 cups Cooked chickpeas, drained",
+      "originalName": "Cooked chickpeas, drained",
+      "amount": 2,
+      "unit": "cups",
+      "meta": ["cooked", "drained"],
+      "measures": {
+        "us": {
+          "amount": 2,
+          "unitShort": "cups",
+          "unitLong": "cups"
+        },
+        "metric": {
+          "amount": 473.176,
+          "unitShort": "ml",
+          "unitLong": "milliliters"
+        }
+      }
+    },
+    {
+      "id": 11215,
+      "aisle": "Produce",
+      "image": "garlic.png",
+      "consistency": "SOLID",
+      "name": "garlic",
+      "nameClean": "garlic",
+      "original": "1 tablespoon Garlic, minced",
+      "originalName": "Garlic, minced",
+      "amount": 1,
+      "unit": "tablespoon",
+      "meta": ["minced"],
+      "measures": {
+        "us": {
+          "amount": 1,
+          "unitShort": "Tbsp",
+          "unitLong": "Tbsp"
+        },
+        "metric": {
+          "amount": 1,
+          "unitShort": "Tbsp",
+          "unitLong": "Tbsp"
+        }
+      }
+    },
+    {
+      "id": 21052,
+      "aisle": "Produce",
+      "image": "mixed-greens-or-mesclun.jpg",
+      "consistency": "SOLID",
+      "name": "kale",
+      "nameClean": "mesclun",
+      "original": "1 pound Kale or other greens, washed and trimmed",
+      "originalName": "Kale or other greens, washed and trimmed",
+      "amount": 1,
+      "unit": "pound",
+      "meta": ["washed and trimmed"],
+      "measures": {
+        "us": {
+          "amount": 1,
+          "unitShort": "lb",
+          "unitLong": "pound"
+        },
+        "metric": {
+          "amount": 453.592,
+          "unitShort": "g",
+          "unitLong": "grams"
+        }
+      }
+    },
+    {
+      "id": 4053,
+      "aisle": "Oil, Vinegar, Salad Dressing",
+      "image": "olive-oil.jpg",
+      "consistency": "LIQUID",
+      "name": "olive oil",
+      "nameClean": "olive oil",
+      "original": "1 tablespoon Olive oil",
+      "originalName": "Olive oil",
+      "amount": 1,
+      "unit": "tablespoon",
+      "meta": [],
+      "measures": {
+        "us": {
+          "amount": 1,
+          "unitShort": "Tbsp",
+          "unitLong": "Tbsp"
+        },
+        "metric": {
+          "amount": 1,
+          "unitShort": "Tbsp",
+          "unitLong": "Tbsp"
+        }
+      }
+    },
+    {
+      "id": 11297,
+      "aisle": "Produce;Spices and Seasonings",
+      "image": "parsley.jpg",
+      "consistency": "SOLID",
+      "name": "parsley",
+      "nameClean": "parsley",
+      "original": "4 tablespoons Parsley, minced",
+      "originalName": "Parsley, minced",
+      "amount": 4,
+      "unit": "tablespoons",
+      "meta": ["minced"],
+      "measures": {
+        "us": {
+          "amount": 4,
+          "unitShort": "Tbsps",
+          "unitLong": "Tbsps"
+        },
+        "metric": {
+          "amount": 4,
+          "unitShort": "Tbsps",
+          "unitLong": "Tbsps"
+        }
+      }
+    },
+    {
+      "id": 1102047,
+      "aisle": "Spices and Seasonings",
+      "image": "salt-and-pepper.jpg",
+      "consistency": "SOLID",
+      "name": "salt and pepper",
+      "nameClean": "salt and pepper",
+      "original": "Salt and pepper to taste",
+      "originalName": "Salt and pepper to taste",
+      "amount": 4,
+      "unit": "servings",
+      "meta": ["to taste"],
+      "measures": {
+        "us": {
+          "amount": 4,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        },
+        "metric": {
+          "amount": 4,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 10120499,
+      "aisle": "Pasta and Rice",
+      "image": "elbow.jpg",
+      "consistency": "SOLID",
+      "name": "ziti",
+      "nameClean": "elbow macaroni",
+      "original": "1 pound Ziti, elbow macaroni, twists or bowties",
+      "originalName": "Ziti, elbow macaroni, twists or bowties",
+      "amount": 1,
+      "unit": "pound",
+      "meta": [],
+      "measures": {
+        "us": {
+          "amount": 1,
+          "unitShort": "lb",
+          "unitLong": "pound"
+        },
+        "metric": {
+          "amount": 453.592,
+          "unitShort": "g",
+          "unitLong": "grams"
+        }
+      }
+    }
+  ],
+  "id": 654905,
+  "title": "Pasta With Chickpeas and Kale",
+  "readyInMinutes": 45,
+  "servings": 4,
+  "sourceUrl": "http://www.foodista.com/recipe/4BTWKPRC/pasta-with-chickpeas-and-kale",
+  "image": "https://spoonacular.com/recipeImages/654905-556x370.jpg",
+  "imageType": "jpg",
+  "summary": "Pasta With Chickpeas and Kale is a main course that serves 4. One portion of this dish contains roughly <b>24g of protein</b>, <b>7g of fat</b>, and a total of <b>609 calories</b>. For <b>$2.44 per serving</b>, this recipe <b>covers 30%</b> of your daily requirements of vitamins and minerals. This recipe from Foodista requires olive oil, chickpeas, parsley, and kale. This recipe is liked by 2 foodies and cooks. From preparation to the plate, this recipe takes about <b>45 minutes</b>. It is a good option if you're following a <b>dairy free, lacto ovo vegetarian, and vegan</b> diet. With a spoonacular <b>score of 94%</b>, this dish is great. Similar recipes include <a href=\"https://spoonacular.com/recipes/pasta-with-chickpeas-and-kale-1367731\">Pasta With Chickpeas and Kale</a>, <a href=\"https://spoonacular.com/recipes/creamed-kale-with-chickpeas-608963\">Creamed kale with chickpeas</a>, and <a href=\"https://spoonacular.com/recipes/curried-chickpeas-and-kale-1501017\">Curried Chickpeas and Kale</a>.",
+  "cuisines": [],
+  "dishTypes": ["side dish", "lunch", "main course", "main dish", "dinner"],
+  "diets": ["dairy free", "lacto ovo vegetarian", "vegan"],
+  "occasions": [],
+  "winePairing": {
+    "pairedWines": [],
+    "pairingText": "No one wine will suit every pasta dish. Pasta in a tomato-based sauce will usually work well with a medium-bodied red, such as a montepulciano or chianti. Pasta with seafood or pesto will fare better with a light-bodied white, such as a pinot grigio. Cheese-heavy pasta can pair well with red or white - you might try a sangiovese wine for hard cheeses and a chardonnay for soft cheeses. We may be able to make a better recommendation if you ask again with a specific pasta dish.",
+    "productMatches": []
+  },
+  "instructions": "<ol><li>Set a large pot of water to boil, and add salt. Cut the kale stems into 2-3 inch pieces; chop the leaves coarsely and set aside. Boil the stems until they are nearly tender; then, add the greens. Cook until kale is quite tender but stillbright green. Scoop it out with a slotted spoon, place in a bowl of ice water, and keep pot boiling. When the kale cools, squeeze out excess water, gather it into a mass and chop rather finely. Meanwhile, place olive oil in a large skillet over ve</li><li>Warm the garlic mixture over medium heat, and add the cooked pasta, the chickpeas and the chopped kale.</li><li>Toss well, taste for seasoning, garnish with parsley and serve immediately.</li></ol>",
+  "analyzedInstructions": [
+    {
+      "name": "",
+      "steps": [
+        {
+          "number": 1,
+          "step": "Set a large pot of water to boil, and add salt.",
+          "ingredients": [
+            {
+              "id": 14412,
+              "name": "water",
+              "localizedName": "water",
+              "image": "water.png"
+            },
+            {
+              "id": 2047,
+              "name": "salt",
+              "localizedName": "salt",
+              "image": "salt.jpg"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404752,
+              "name": "pot",
+              "localizedName": "pot",
+              "image": "stock-pot.jpg"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "step": "Cut the kale stems into 2-3 inch pieces; chop the leaves coarsely and set aside. Boil the stems until they are nearly tender; then, add the greens. Cook until kale is quite tender but stillbright green. Scoop it out with a slotted spoon, place in a bowl of ice water, and keep pot boiling. When the kale cools, squeeze out excess water, gather it into a mass and chop rather finely. Meanwhile, place olive oil in a large skillet over veWarm the garlic mixture over medium heat, and add the cooked pasta, the chickpeas and the chopped kale.Toss well, taste for seasoning, garnish with parsley and serve immediately.",
+          "ingredients": [
+            {
+              "id": 20421,
+              "name": "cooked pasta",
+              "localizedName": "cooked pasta",
+              "image": "fusilli.jpg"
+            },
+            {
+              "id": 16057,
+              "name": "chickpeas",
+              "localizedName": "chickpeas",
+              "image": "chickpeas.png"
+            },
+            {
+              "id": 14412,
+              "name": "water",
+              "localizedName": "water",
+              "image": "water.png"
+            },
+            {
+              "id": 4053,
+              "name": "olive oil",
+              "localizedName": "olive oil",
+              "image": "olive-oil.jpg"
+            },
+            {
+              "id": 1042027,
+              "name": "seasoning",
+              "localizedName": "seasoning",
+              "image": "seasoning.png"
+            },
+            {
+              "id": 11297,
+              "name": "parsley",
+              "localizedName": "parsley",
+              "image": "parsley.jpg"
+            },
+            {
+              "id": 11215,
+              "name": "garlic",
+              "localizedName": "garlic",
+              "image": "garlic.png"
+            },
+            {
+              "id": 21052,
+              "name": "greens",
+              "localizedName": "greens",
+              "image": "mixed-greens-or-mesclun.jpg"
+            },
+            {
+              "id": 11233,
+              "name": "kale",
+              "localizedName": "kale",
+              "image": "kale.jpg"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404636,
+              "name": "slotted spoon",
+              "localizedName": "slotted spoon",
+              "image": "slotted-spoon.jpg"
+            },
+            {
+              "id": 404645,
+              "name": "frying pan",
+              "localizedName": "frying pan",
+              "image": "pan.png"
+            },
+            {
+              "id": 404783,
+              "name": "bowl",
+              "localizedName": "bowl",
+              "image": "bowl.jpg"
+            },
+            {
+              "id": 404752,
+              "name": "pot",
+              "localizedName": "pot",
+              "image": "stock-pot.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "originalId": null,
+  "spoonacularSourceUrl": "https://spoonacular.com/pasta-with-chickpeas-and-kale-654905"
+}
