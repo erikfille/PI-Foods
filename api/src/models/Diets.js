@@ -1,11 +1,11 @@
 const { DataTypes } = require("sequelize");
-
+// const { sequelize } = require("../db.js");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "recipe",
+    "diets",
     {
       id: {
         type: DataTypes.UUID, // Chequear las diferencias entre UUIDV1 y UUIDV4
@@ -13,26 +13,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
-      title: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      healthScore: {
-        type: DataTypes.INTEGER,
-      },
-      summary: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      instructions: {
-        type: DataTypes.TEXT,
-      },
-      image: {
-        type: DataTypes.STRING,
       },
     },
     { timestamps: false }
   );
 };
-
-// dishTypes es una tabla extra con relacion de muchos a muchos con recipes
