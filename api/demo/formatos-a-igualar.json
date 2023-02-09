@@ -1,0 +1,179 @@
+// Buscar por ID
+
+// receta por id - API
+
+{
+    "id": 782585,
+    "title": "Cannellini Bean and Asparagus Salad with Mushrooms",
+    "healthScore": 100,
+    "summary": "Cannellini Bean and Asparagus Salad with Mushrooms requires approximately <b>45 minutes</b> from start to finish. This main course has <b>482 calories</b>, <b>31g of protein</b>, and <b>6g of fat</b> per serving. This gluten free, dairy free, lacto ovo vegetarian, and vegan recipe serves 6 and costs <b>$1.35 per serving</b>. 309 people were impressed by this recipe. Head to the store and pick up grain mustard, sea salt, lemon zest, and a few other things to make it today. It is brought to you by foodandspice.blogspot.com. Taking all factors into account, this recipe <b>earns a spoonacular score of 70%</b>, which is pretty good. Similar recipes are <a href=\"https://spoonacular.com/recipes/cannellini-bean-salad-422994\">Cannellini Bean Salad</a>, <a href=\"https://spoonacular.com/recipes/refreshing-cannellini-bean-salad-113127\">Refreshing Cannellini Bean Salad</a>, and <a href=\"https://spoonacular.com/recipes/cannellini-and-green-bean-salad-33177\">Cannellini-and-Green Bean Salad</a>.",
+    "instructions": "Rinse the cannellini beans and soak for 8 hours or overnight in several inches of water. Drain and rinse, then transfer to a medium saucepan and cover with fresh water. Add the curry leaves or bay leaf and bring to a boil. Reduce heat to medium-low, cover, and simmer for 1 hour or until the beans are tender but not falling apart. Drain and transfer to a large salad bowl.Meanwhile, snap the woody ends off of the asparagus spears and steam the spears for 6 minutes or until just tender but still retaining their crunch. Transfer to the salad bowl.Now cook the mushrooms. Heat the oil in a large skillet over high heat. As soon as the oil is hot, drop in the mushrooms and cook, stirring constantly, for 5 minutes or until the mushrooms begin to brown and lose some of their liquid. Transfer to the bowl with the asparagus.To make the dressing, combine the tarragon, lemon zest, garlic, lemon juice, olive oil and mustard in a small food processor or blender. Process until smooth. Pour the dressing over the salad, season with salt and pepper, and toss. Serve at room temperature or chilled.",
+    "image": "https://spoonacular.com/recipeImages/782585-556x370.jpg",
+    "diets": [
+      "gluten free",
+      "dairy free",
+      "lacto ovo vegetarian",
+      "vegan"
+    ],
+    "dishTypes": [
+      "side dish",
+      "lunch",
+      "main course",
+      "salad",
+      "main dish",
+      "dinner"
+    ]
+  }
+
+// receta por id - DB
+{
+    "id": "d2f8ea50-a8a2-11ed-a3bc-c9d0eb327081",
+    "title": "Fideos con pasta de Brocoli",
+    "healthScore": 100,
+    "summary": "Un delicioso plato para comer cuando estas apurado",
+    "instructions": "1) Hierve el brócoli y la pasta por separado. 2) Rehoga cebolla, morron y zanahoria. 3) Procesa el brocoli hervido y agregale la verdura rehogada. 4) Salpimentar a gusto y agregar la pasta. 5) Servir",
+    "image": "https://elmundoenrecetas.s3.amazonaws.com/uploads/recipe/picture/634/pasta_con_brocoli_2.webp",
+    "diets": [
+      "Vegan",
+      "Vegetarian",
+      "Lacto-Vegetarian",
+      "Ovo-Vegetarian",
+      "Pescatarian",
+      "Paleo",
+      "Primal",
+      "Low FODMAP",
+      "Whole30"
+    ],
+    "dishTypes": [
+      "Dinner",
+      "Lunch"
+    ]
+  }
+
+
+// Buscar por nombre
+
+[
+    {
+      "id": 794349,
+      "title": "Broccoli and Chickpea Rice Salad",
+      "healthScore": 83,
+      "summary": "Broccoli and Chickpea Rice Salad takes roughly <b>45 minutes</b> from beginning to end. Watching your figure? This gluten free, dairy free, lacto ovo vegetarian, and vegan recipe has <b>355 calories</b>, <b>15g of protein</b>, and <b>10g of fat</b> per serving. This recipe serves 6. For <b>$1.13 per serving</b>, this recipe <b>covers 30%</b> of your daily requirements of vitamins and minerals. It works well as a main course. 44 people were glad they tried this recipe. It is brought to you by foodandspice.blogspot.com. A mixture of ground pepper, broccoli florets, olive oil, and a handful of other ingredients are all it takes to make this recipe so tasty. With a spoonacular <b>score of 99%</b>, this dish is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/broccoli-and-chickpea-rice-salad-1380823\">Broccoli and Chickpea Rice Salad</a>, <a href=\"https://spoonacular.com/recipes/broccoli-and-chickpea-rice-salad-1401089\">Broccoli and Chickpea Rice Salad</a>, and <a href=\"https://spoonacular.com/recipes/broccoli-and-chickpea-rice-salad-1287405\">Broccoli and Chickpea Rice Salad</a>.",
+      "instructions": [
+        {
+          "name": "",
+          "steps": [
+            {
+              "number": 1,
+              "step": "In a large skillet, heat the oil over medium heat.",
+              "ingredients": [
+                {
+                  "id": 4582,
+                  "name": "cooking oil",
+                  "localizedName": "cooking oil",
+                  "image": "vegetable-oil.jpg"
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 404645,
+                  "name": "frying pan",
+                  "localizedName": "frying pan",
+                  "image": "pan.png"
+                }
+              ]
+            },
+            {
+              "number": 2,
+              "step": "Add the broccoli, stir well, and cover. Cook, stirring often, until the broccoli is tender.",
+              "ingredients": [
+                {
+                  "id": 11090,
+                  "name": "broccoli",
+                  "localizedName": "broccoli",
+                  "image": "broccoli.jpg"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 3,
+              "step": "Add the broccoli to a large bowl, along with the remaining salad ingredients.To make the dressing, whisk together all of the dressing ingredients in a small bowl.",
+              "ingredients": [
+                {
+                  "id": 11090,
+                  "name": "broccoli",
+                  "localizedName": "broccoli",
+                  "image": "broccoli.jpg"
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 404661,
+                  "name": "whisk",
+                  "localizedName": "whisk",
+                  "image": "whisk.png"
+                },
+                {
+                  "id": 404783,
+                  "name": "bowl",
+                  "localizedName": "bowl",
+                  "image": "bowl.jpg"
+                }
+              ]
+            },
+            {
+              "number": 4,
+              "step": "Pour the dressing over the salad and toss well to coat evenly. Taste for seasoning and serve.",
+              "ingredients": [
+                {
+                  "id": 1042027,
+                  "name": "seasoning",
+                  "localizedName": "seasoning",
+                  "image": "seasoning.png"
+                }
+              ],
+              "equipment": []
+            }
+          ]
+        }
+      ],
+      "image": "https://spoonacular.com/recipeImages/794349-312x231.jpg",
+      "diets": [
+        "gluten free",
+        "dairy free",
+        "lacto ovo vegetarian",
+        "vegan"
+      ],
+      "dishTypes": [
+        "side dish",
+        "lunch",
+        "main course",
+        "salad",
+        "main dish",
+        "dinner"
+      ]
+    },
+    {
+      "id": "55d2f8c0-a890-11ed-b293-49f99dadba3c",
+      "title": "Fideos con pasta de Brocoli",
+      "healthScore": 100,
+      "summary": "Un delicioso plato para comer cuando estas apurado",
+      "image": "https://elmundoenrecetas.s3.amazonaws.com/uploads/recipe/picture/634/pasta_con_brocoli_2.webp",
+      "diets": [
+        "Vegan",
+        "Vegetarian",
+        "Lacto-Vegetarian",
+        "Ovo-Vegetarian",
+        "Pescatarian",
+        "Paleo",
+        "Primal",
+        "Low FODMAP",
+        "Whole30"
+      ],
+      "dishTypes": [
+        "Lunch",
+        "Dinner"
+      ]
+    }
+  ]
