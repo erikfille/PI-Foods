@@ -6,9 +6,16 @@ const { Recipe, Diets, DishType } = require("../../db");
 const { API_KEY } = process.env;
 
 async function getAPIRecipes(name) {
+  // Busqueda por nombre de receta
+  // const responseAPI = await axios(
+  //   `https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`
+  // );
+
+  // Busqueda de las primeras 100 recetas
   const responseAPI = await axios(
-    `https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`
+    `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${API_KEY}`
   );
+
   let recipes = responseAPI.data.results.map((recipe) => {
     return {
       id: recipe.id,
@@ -21,11 +28,14 @@ async function getAPIRecipes(name) {
       dishTypes: recipe.dishTypes,
     };
   });
+  // Filtrado de resultados por nombre
+  recipes = recipes.filter((e) => e.title.includes(name));
+
   return recipes;
 }
 
 async function getDBRecipes(name) {
-  const recipes = await Recipe.findAll({
+  let dbQuery = await Recipe.findAll({
     where: {
       title: {
         [Op.iLike]: `%${name}%`,
@@ -48,7 +58,8 @@ async function getDBRecipes(name) {
       },
     ],
   });
-  return recipes;
+
+  return dbNormalizer(dbQuery);
 }
 
 async function createRecipe(obj) {
@@ -62,77 +73,78 @@ async function createRecipe(obj) {
   return recipe;
 }
 
-async function checkDiet(diet) {
-  let check = await Diets.findOne({
-    where: {
-      name: diet,
-    },
-  });
-  if (!check) return true;
-}
-
-async function checkRecipe(name) {
-  let check = await Recipe.findOne({
-    where: {
-      title: name,
-    },
-  });
-  if (!check) return true;
-}
-
-async function checkDish(dish) {
-  let check = await DishType.findOne({
-    where: {
-      name: dish,
-    },
-  });
-  if (!check) return true;
-}
-
-async function saveDiets(arr) {
-  for (let diet of arr) {
-    if (await checkDiet(diet)) {
-      await Diets.create({ name: diet });
-    }
-  }
-  return;
-}
-
-async function saveDishes(arr) {
-  for (let dish of arr) {
-    if (await checkDish(dish)) {
-      await DishType.create({ name: dish });
-    }
-  }
-  return;
-}
-
-async function dietIdSearch(arr) {
-  let dietIds = [];
-  for (let diet of arr) {
-    let id = await Diets.findOne({
-      attributes: ["id"],
+async function checkAtt(att, str) {
+  let check;
+  if (str === "diet") {
+    check = await Diets.findOne({
       where: {
-        name: diet,
+        name: att,
       },
     });
-    dietIds.push(id);
   }
-  return dietIds;
-}
-
-async function dishIdSearch(arr) {
-  let dishIds = [];
-  for (dish of arr) {
-    let id = await DishType.findOne({
-      attributes: ["id"],
+  if (str === "dish") {
+    check = await DishType.findOne({
       where: {
-        name: dish,
+        name: att,
       },
     });
-    dishIds.push(id);
   }
-  return dishIds;
+  if (str === "recipe") {
+    check = await Recipe.findOne({
+      where: {
+        title: att,
+      },
+    });
+  }
+  if (!check) return true;
+}
+
+async function saveAtt(arr, str) {
+  if (str === "diet") {
+    for (let diet of arr) {
+      if (await checkAtt(diet, "diet")) {
+        await Diets.create({ name: diet });
+      }
+    }
+    return;
+  }
+  if (str === "dish") {
+    for (let dish of arr) {
+      if (await checkAtt(dish, "dish")) {
+        await DishType.create({ name: dish });
+      }
+    }
+    return;
+  }
+}
+
+async function attIdSearch(arr, str) {
+  if (str === "dishId") {
+    let dishIds = [];
+    for (dish of arr) {
+      let id = await DishType.findOne({
+        attributes: ["id"],
+        where: {
+          name: dish,
+        },
+      });
+      dishIds.push(id);
+    }
+    return dishIds;
+  }
+  if (str === "dietId") {
+    let dietIds = [];
+    for (let diet of arr) {
+      let id = await Diets.findOne({
+        attributes: ["id"],
+        where: {
+          name: diet,
+        },
+      });
+      dietIds.push(id);
+    }
+    return dietIds;
+  }
 }
 
 async function getAPIRecipeById(id) {
@@ -177,18 +189,44 @@ async function getDBRecipesById(id) {
       },
     ],
   });
+  return dbNormalizer([recipes])[0]; // la ejecuto como un array y la devuelvo en su index 0 ya que es una busqueda de único elemento y necesito que se ejecute como un array para pasar por dbNormalizer()
+}
+
+function dbNormalizer(query) {
+  // Normalizo mi query
+  let recipes = query.map((recipe) => {
+    return {
+      id: recipe.id,
+      title: recipe.title,
+      healthScore: recipe.healthScore,
+      summary: recipe.summary,
+      instructions: recipe.analyzedInstructions,
+      image: recipe.image,
+      diets: recipe.diets,
+      dishTypes: recipe.dishTypes,
+    };
+  });
+
+  // Convierto los atributos DishType y Diets en un array de strings
+  recipes.forEach((recipe) => {
+    let mapDiets = recipe.diets.map((e) => e.name);
+    recipe.diets = mapDiets;
+  });
+  recipes.forEach((recipe) => {
+    let mapDishes = recipe.dishTypes.map((e) => e.name);
+    recipe.dishTypes = mapDishes;
+  });
+
   return recipes;
 }
 
 module.exports = {
   getAPIRecipes,
   getDBRecipes,
-  createRecipe,
-  saveDiets,
-  dietIdSearch,
-  saveDishes,
-  dishIdSearch,
-  checkRecipe,
   getAPIRecipeById,
   getDBRecipesById,
+  attIdSearch,
+  checkAtt,
+  saveAtt,
+  createRecipe,
 };

@@ -4,11 +4,9 @@ const {
   getAPIRecipes,
   getDBRecipes,
   createRecipe,
-  saveDiets,
-  dietIdSearch,
-  saveDishes,
-  dishIdSearch,
-  checkRecipe,
+  saveAtt,
+  attIdSearch,
+  checkAtt,
   getAPIRecipeById,
   getDBRecipesById,
 } = require("../controllers/recipe.controllers");
@@ -78,14 +76,14 @@ recipeRouter.post("/", async (req, res) => {
 
     let recipe = { title, healthScore, summary, instructions, image };
 
-    if (await checkRecipe(title)) {
+    if (await checkAtt(title, "recipe")) {
       let createdRecipe = await createRecipe(recipe);
 
-      await saveDiets(dietArr);
-      await saveDishes(dishArr);
+      await saveAtt(dietArr, "diet");
+      await saveAtt(dishArr, "dish");
 
-      await createdRecipe.addDiets(await dietIdSearch(dietArr));
-      await createdRecipe.addDishTypes(await dishIdSearch(dishArr));
+      await createdRecipe.addDiets(await attIdSearch(dietArr, "dietId"));
+      await createdRecipe.addDishTypes(await attIdSearch(dishArr, "dishId"));
     } else throw Error("La receta ya existe en la base de datos");
 
     res.status(201).send(`La receta ${title} se ha creado correctamente`);
