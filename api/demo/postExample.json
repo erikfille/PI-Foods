@@ -1,0 +1,20 @@
+{
+  "1": {
+    "title": "Fideos con pasta de Brocoli",
+    "healthScore": 100,
+    "summary": "Un delicioso plato para comer cuando estas apurado",
+    "instructions": "1) Hierve el brócoli y la pasta por separado. 2) Rehoga cebolla, morron y zanahoria. 3) Procesa el brocoli hervido y agregale la verdura rehogada. 4) Salpimentar a gusto y agregar la pasta. 5) Servir",
+    "image": "https://elmundoenrecetas.s3.amazonaws.com/uploads/recipe/picture/634/pasta_con_brocoli_2.webp",
+    "diets": "Vegan, Vegetarian, Lacto-Vegetarian, Ovo-Vegetarian, Pescetarian, Paleo, Primal, Low FODMAP, Whole30",
+    "dishTypes": "Dinner, Lunch"
+  },
+  "2": {
+    "title": "Hummus",
+    "healthScore": 100,
+    "summary": "Un delicioso dip y acompañamiento, alto en proteinas",
+    "instructions": "1) Deja el garbanzo en remojo durante un minimo de 8hs (ProTip: Agrega un poco de vinagre para evitar la hinchazon). 2) Una vez remojado, hierve los garbanzos hasta que se reduzca bien el agua (ProTip II: Para reducir la hinchazon, hierve los garbanzos con hojas de laurel). 3) Procesa los garbanzos, agregando sal a gusto, una pizca de comino, una pizca de pimienta, curcuma y el jugo de medio limon (o un limon entero, segun que tan alimonado te guste). Agrega el agua reservada del hervor hasta que quede la consistencia cremosa deseada. 4) Servir espolvoreando un poco de pimenton ahumado y unas gotas de aceite de oliva",
+    "image": "https://thesweetmolcajete.com/wp-content/uploads/2018/07/Receta-Basica-de-Hummus-4.jpg",
+    "diets": "Vegan, Vegetarian, Lacto-Vegetarian, Ovo-Vegetarian, Pescetarian, Low FODMAP",
+    "dishTypes": "Dip, Side Dish"
+  }
+}
