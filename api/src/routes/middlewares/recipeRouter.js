@@ -23,7 +23,7 @@ recipeRouter.get("/", async (req, res) => {
     let dbRecipes = []
 
     // Consulta la API
-    // apiRecipes = await getAPIRecipes(name);
+    apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
     dbRecipes = await getDBRecipes(name);
@@ -45,7 +45,7 @@ recipeRouter.get("/:idRecipe", async (req, res) => {
 
     let recipe = {};
 
-    if (Number(idRecipe)) {
+    if (Boolean(Number(idRecipe))) {
       recipe = await getAPIRecipeById(idRecipe);
     } else {
       recipe = await getDBRecipesById(idRecipe);

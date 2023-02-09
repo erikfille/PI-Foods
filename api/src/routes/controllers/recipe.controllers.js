@@ -28,6 +28,8 @@ async function getAPIRecipes(name) {
       dishTypes: recipe.dishTypes,
     };
   });
+
+  console.log(recipes.map((r) => r.title));
   // Filtrado de resultados por nombre
   recipes = recipes.filter((e) => e.title.includes(name));
 
@@ -67,7 +69,7 @@ async function createRecipe(obj) {
     title: obj.title,
     healthScore: obj.healthScore,
     summary: obj.summary,
-    instructions: obj.instructions,
+    analyzedInstructions: obj.instructions,
     image: obj.image,
   });
   return recipe;
@@ -149,22 +151,27 @@ async function attIdSearch(arr, str) {
 
 async function getAPIRecipeById(id) {
   const responseAPI = await axios(
-    `https://api.spoonacular.com/recipes/${id}/information&apiKey=${API_KEY}`
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
   );
 
-  let recipes = responseAPI.data.map((recipe) => {
-    return {
-      id: recipe.id,
-      title: recipe.title,
-      healthScore: recipe.healthScore,
-      summary: recipe.summary,
-      instructions: recipe.analyzedInstructions,
-      image: recipe.image,
-      diets: recipe.diets,
-      dishTypes: recipe.dishTypes,
-    };
-  });
-  return recipes;
+  let recipe = responseAPI.data;
+
+  let instructions = recipe.analyzedInstructions.map((i, idx) =>  i.steps.map(s => s.step).join(' ')).join()
+
+  recipe.analyzedInstructions.forEach(e => console.log(e))
+
+  console.log(instructions)
+
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    healthScore: recipe.healthScore,
+    summary: recipe.summary,
+    instructions: instructions,
+    image: recipe.image,
+    diets: recipe.diets,
+    dishTypes: recipe.dishTypes,
+  };
 }
 
 async function getDBRecipesById(id) {
@@ -189,6 +196,7 @@ async function getDBRecipesById(id) {
       },
     ],
   });
+  console.log(recipes);
   return dbNormalizer([recipes])[0]; // la ejecuto como un array y la devuelvo en su index 0 ya que es una busqueda de único elemento y necesito que se ejecute como un array para pasar por dbNormalizer()
 }
 

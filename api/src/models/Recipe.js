@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      instructions: {
+      analyzedInstructions: {
         type: DataTypes.TEXT,
       },
       image: {
