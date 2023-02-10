@@ -32,9 +32,7 @@ async function getApiDiets() {
   );
   let diets = responseAPI.data.results.map((recipe) => recipe.diets).flat(2).map(d => `${d[0].toUpperCase()}${d.substring(1)}`);
 
-  normDiets = diets.map(d => `${d[0].toUpperCase()}${d.substring(1)}`)
-
-  return normDiets;
+  return diets;
 }
 
 async function getDbDiets() {
@@ -52,10 +50,6 @@ async function getDiets() {
   const dbDiets = await getDbDiets();
 
   let diets = apiDiets.concat(dbDiets).flat(2);
-
-  for (let diet in diets) {
-    diet[0] = diet[0].toUpperCase();
-  }
 
   let setDiets = new Set(diets);
 

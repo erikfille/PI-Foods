@@ -4,6 +4,7 @@ const { getDiets, createDiets } = require("../controllers/diets.controllers");
 dietRouter.get("/", async (req, res) => {
   try {
     await createDiets();
+    
     const response = await getDiets();
 
     res.json(response);

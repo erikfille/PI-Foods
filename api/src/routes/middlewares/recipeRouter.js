@@ -1,5 +1,5 @@
-require("dotenv").config();
 const recipeRouter = require("express").Router();
+
 const {
   getAPIRecipes,
   getDBRecipes,
@@ -10,8 +10,6 @@ const {
   getAPIRecipeById,
   getDBRecipesById,
 } = require("../controllers/recipe.controllers");
-
-const { API_KEY } = process.env;
 
 recipeRouter.get("/", async (req, res) => {
   try {
