@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Op, literal, fn } = require("sequelize");
+const { Op } = require("sequelize");
 const { Recipe, Diets, DishType } = require("../../db");
 
 const { API_KEY } = process.env;
@@ -17,7 +17,7 @@ async function getAPIRecipes(name) {
   );
 
   let recipes = responseAPI.data.results.map((recipe) => {
-    return {
+    let newRecipe = {
       id: recipe.id,
       title: recipe.title,
       healthScore: recipe.healthScore,
@@ -27,9 +27,14 @@ async function getAPIRecipes(name) {
       diets: recipe.diets,
       dishTypes: recipe.dishTypes,
     };
+
+    let instructions = newRecipe.instructions.map((i) =>  i.steps.map(s => `${s.number}) ${s.step}`).join(' ')).join()
+
+    newRecipe.instructions = instructions
+
+    return newRecipe
   });
 
-  console.log(recipes.map((r) => r.title));
   // Filtrado de resultados por nombre
   recipes = recipes.filter((e) => e.title.includes(name));
 
@@ -156,11 +161,7 @@ async function getAPIRecipeById(id) {
 
   let recipe = responseAPI.data;
 
-  let instructions = recipe.analyzedInstructions.map((i, idx) =>  i.steps.map(s => s.step).join(' ')).join()
-
-  recipe.analyzedInstructions.forEach(e => console.log(e))
-
-  console.log(instructions)
+  let instructions = recipe.analyzedInstructions.map((i) =>  i.steps.map(s => `${s.number}) ${s.step}`).join(' ')).join()
 
   return {
     id: recipe.id,
@@ -196,7 +197,6 @@ async function getDBRecipesById(id) {
       },
     ],
   });
-  console.log(recipes);
   return dbNormalizer([recipes])[0]; // la ejecuto como un array y la devuelvo en su index 0 ya que es una busqueda de único elemento y necesito que se ejecute como un array para pasar por dbNormalizer()
 }
 
@@ -220,6 +220,7 @@ function dbNormalizer(query) {
     let mapDiets = recipe.diets.map((e) => e.name);
     recipe.diets = mapDiets;
   });
+  
   recipes.forEach((recipe) => {
     let mapDishes = recipe.dishTypes.map((e) => e.name);
     recipe.dishTypes = mapDishes;

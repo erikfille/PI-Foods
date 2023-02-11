@@ -67,7 +67,7 @@ recipeRouter.post("/", async (req, res) => {
     } = req.body;
 
     if (!title || !summary)
-      throw Error("Faltan datos super hiper mega relevantes");
+      throw Error("Faltan datos importantes");
 
     let dietArr = diets.split(",").map((e) => e.trim());
     let dishArr = dishTypes.split(",").map((e) => e.trim());
@@ -82,6 +82,7 @@ recipeRouter.post("/", async (req, res) => {
 
       await createdRecipe.addDiets(await attIdSearch(dietArr, "dietId"));
       await createdRecipe.addDishTypes(await attIdSearch(dishArr, "dishId"));
+      
     } else throw Error("La receta ya existe en la base de datos");
 
     res.status(201).send(`La receta ${title} se ha creado correctamente`);
