@@ -219,9 +219,6 @@ function dbNormalizer(query) {
   recipes.forEach((recipe) => {
     let mapDiets = recipe.diets.map((e) => e.name);
     recipe.diets = mapDiets;
-  });
-  
-  recipes.forEach((recipe) => {
     let mapDishes = recipe.dishTypes.map((e) => e.name);
     recipe.dishTypes = mapDishes;
   });
