@@ -11,12 +11,33 @@ const {
   getDBRecipesById,
 } = require("../controllers/recipe.controllers");
 
+recipeRouter.get("/all", async (req, res) => {
+  try {
+    let apiRecipes = [];
+    // Consulta la API
+    // let apiRecipes = await getAPIRecipes();
+
+    // Consulta la DB
+    let dbRecipes = await getDBRecipes();
+
+    if (!apiRecipes && !dbRecipes)
+      throw Error("No hay recetas que coincidan con la búsqueda");
+
+    let allRecipes = apiRecipes.concat(dbRecipes);
+
+    res.status(200).send(allRecipes);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
 recipeRouter.get("/", async (req, res) => {
   try {
     const { name } = req.query;
 
+    let apiRecipes=[]
     // Consulta la API
-    let apiRecipes = await getAPIRecipes(name);
+    // let apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
     let dbRecipes = await getDBRecipes(name);
@@ -61,8 +82,7 @@ recipeRouter.post("/", async (req, res) => {
       dishTypes,
     } = req.body;
 
-    if (!title || !summary)
-      throw Error("Faltan datos importantes");
+    if (!title || !summary) throw Error("Faltan datos importantes");
 
     let dietArr = diets.split(",").map((e) => e.trim());
     let dishArr = dishTypes.split(",").map((e) => e.trim());
@@ -77,7 +97,6 @@ recipeRouter.post("/", async (req, res) => {
 
       await createdRecipe.addDiets(await attIdSearch(dietArr, "dietId"));
       await createdRecipe.addDishTypes(await attIdSearch(dishArr, "dishId"));
-      
     } else throw Error("La receta ya existe en la base de datos");
 
     res.status(201).send(`La receta ${title} se ha creado correctamente`);

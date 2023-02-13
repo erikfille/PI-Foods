@@ -28,43 +28,68 @@ async function getAPIRecipes(name) {
       dishTypes: recipe.dishTypes,
     };
 
-    let instructions = newRecipe.instructions.map((i) =>  i.steps.map(s => `${s.number}) ${s.step}`).join(' ')).join()
+    let instructions = newRecipe.instructions
+      .map((i) => i.steps.map((s) => `${s.number}) ${s.step}`).join(" "))
+      .join();
 
-    newRecipe.instructions = instructions
+    newRecipe.instructions = instructions;
 
-    return newRecipe
+    return newRecipe;
   });
 
-  // Filtrado de resultados por nombre
-  recipes = recipes.filter((e) => e.title.includes(name));
-
+  if (name) {
+    // Filtrado de resultados por nombre
+    recipes = recipes.filter((e) => e.title.includes(name));
+  }
   return recipes;
 }
 
 async function getDBRecipes(name) {
-  let dbQuery = await Recipe.findAll({
-    where: {
-      title: {
-        [Op.iLike]: `%${name}%`,
-      },
-    },
-    include: [
-      {
-        model: Diets,
-        attributes: ["name"],
-        through: {
-          attributes: [],
+  let dbQuery = [];
+  if (name) {
+    dbQuery = await Recipe.findAll({
+      where: {
+        title: {
+          [Op.iLike]: `%${name}%`,
         },
       },
-      {
-        model: DishType,
-        attributes: ["name"],
-        through: {
-          attributes: [],
+      include: [
+        {
+          model: Diets,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
-      },
-    ],
-  });
+        {
+          model: DishType,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+  } else {
+    dbQuery = await Recipe.findAll({
+      include: [
+        {
+          model: Diets,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: DishType,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+  }
 
   return dbNormalizer(dbQuery);
 }
@@ -161,7 +186,9 @@ async function getAPIRecipeById(id) {
 
   let recipe = responseAPI.data;
 
-  let instructions = recipe.analyzedInstructions.map((i) =>  i.steps.map(s => `${s.number}) ${s.step}`).join(' ')).join()
+  let instructions = recipe.analyzedInstructions
+    .map((i) => i.steps.map((s) => `${s.number}) ${s.step}`).join(" "))
+    .join();
 
   return {
     id: recipe.id,
