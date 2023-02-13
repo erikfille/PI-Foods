@@ -15,21 +15,16 @@ recipeRouter.get("/", async (req, res) => {
   try {
     const { name } = req.query;
 
-    let allRecipes = [];
-
-    let apiRecipes = [] // Lo declaro antes para poder comentarlo y que no busque en la API
-    let dbRecipes = []
-
     // Consulta la API
-    apiRecipes = await getAPIRecipes(name);
+    let apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
-    dbRecipes = await getDBRecipes(name);
+    let dbRecipes = await getDBRecipes(name);
 
     if (!apiRecipes && !dbRecipes)
       throw Error("No hay recetas que coincidan con la búsqueda");
 
-    allRecipes = apiRecipes.concat(dbRecipes);
+    let allRecipes = apiRecipes.concat(dbRecipes);
 
     res.status(200).send(allRecipes);
   } catch (error) {
