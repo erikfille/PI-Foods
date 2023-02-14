@@ -15,6 +15,7 @@ export default function Cards(props) {
       diets={r.diets}
       dishTypes={r.dishTypes}
       onClose={onClose}
+      type="recipe"
     />
   ));
 }

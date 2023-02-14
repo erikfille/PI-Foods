@@ -2,7 +2,12 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRecipes, getDailyRecipes } from "./redux/actions";
+import {
+  getAllRecipes,
+  getDailyRecipes,
+  deleteRecipe,
+  deleteDailyRecipe,
+} from "./redux/actions";
 import Nav from "./components/Nav/Nav";
 import Landing from "./components/Landing/Landing";
 import DailyRecipes from "./components/Cards/DailyRecipes";
@@ -16,7 +21,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const recipes = useSelector((state) => state.recipes);
-  const dailyRecipes = useSelector((state) => state.dailyRecipes);
+  const dailyRecipes = useSelector((state) => state.filteredDailyRecipes);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes/all`)
@@ -43,7 +48,16 @@ function App() {
 
   async function onSearch(name, order) {}
 
-  function onClose(e) {}
+  function onClose(id, type) {
+    if (type === "recipe") {
+      console.log("llegue al dispatch");
+      dispatch(deleteRecipe(id));
+    }
+    if (type === "dailyRecipe") {
+      console.log("llegue al dispatch");
+      dispatch(deleteDailyRecipe(id));
+    }
+  }
 
   return (
     <div className="App">

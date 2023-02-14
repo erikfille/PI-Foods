@@ -20,12 +20,12 @@ export default function SearchBar(props) {
       <div className="searchDiv">
         <label htmlFor="search"></label>
         <input
-          value={!search ? "Search a Recipe" : search}
+          value={search}
           type="text"
           name="search"
           id="search"
           className="input"
-          placeholder="What do you want to search?"
+          placeholder="Search for a Recipe"
           onChange={handleInputChange}
         />
         <button className="button" onClick={() => onSearch(search, orderBy)}>
