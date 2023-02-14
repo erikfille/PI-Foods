@@ -20,3 +20,7 @@ module.exports = (sequelize) => {
     { timestamps: false }
   );
 };
+
+/*
+// Ver como implementar la api de cloudinary y un input tipo file para subir imagen
+*/

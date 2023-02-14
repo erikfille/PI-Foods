@@ -5,13 +5,10 @@ const { Recipe, Diets, DishType } = require("../../db");
 
 const { API_KEY } = process.env;
 
-async function getAPIRecipes(name) {
-  // Busqueda por nombre de receta
-  // const responseAPI = await axios(
-  //   `https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`
-  // );
+// Limpiar info innecesaria del get de recetas general
 
-  // Busqueda de las primeras 100 recetas
+async function getAPIRecipes(name) {
+
   const responseAPI = await axios(
     `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${API_KEY}`
   );
@@ -38,7 +35,6 @@ async function getAPIRecipes(name) {
   });
 
   if (name) {
-    // Filtrado de resultados por nombre
     recipes = recipes.filter((e) => e.title.includes(name));
   }
   return recipes;
