@@ -21,8 +21,8 @@ async function getAPIRecipes(name) {
       summary: recipe.summary,
       instructions: recipe.analyzedInstructions,
       image: recipe.image,
-      diets: recipe.diets,
-      dishTypes: recipe.dishTypes,
+      diets: recipe.diets.map(d => `${d[0].toUpperCase()}${d.substring(1)}`),
+      dishTypes: recipe.dishTypes.map(d => `${d[0].toUpperCase()}${d.substring(1)}`),
     };
 
     let instructions = newRecipe.instructions
