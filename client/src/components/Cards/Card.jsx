@@ -10,7 +10,7 @@ export default function Card(props) {
       </button>
       <div>
         <Link to={`/recipes/${id}`}>
-          <h1>{title}</h1>
+          <h1 className="title">{title}</h1>
         </Link>
         <>
           {diets.map((d) => (
@@ -19,7 +19,7 @@ export default function Card(props) {
         </>
         <hr />
       </div>
-      <div>
+      <div className="imgContainer">
         <img src={image} alt={title} />
       </div>
     </div>
@@ -32,7 +32,7 @@ export default function Card(props) {
       </button>
       <div>
         <Link to={`/recipes/${id}`}>
-          <h1>{title}</h1>
+          <h1 className="title">{title}</h1>
         </Link>
         <>
           {dishTypes.map((d) => (
@@ -41,7 +41,7 @@ export default function Card(props) {
         </>
         <hr />
       </div>
-      <div>
+      <div className="imgContainer">
         <img src={image} alt={title} />
       </div>
     </div>
