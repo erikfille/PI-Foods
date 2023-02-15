@@ -5,14 +5,17 @@ export default function SearchBar(props) {
 
   const [search, setSearch] = useState("");
 
-  const [orderBy, setOrderBy] = useState("alphabetical");
+  const [orderBy, setOrderBy] = useState({
+    by: "Alphabetical",
+    order: "Ascendant",
+  });
 
   function handleInputChange(e) {
     setSearch(e.target.value);
   }
 
   function onSelect(e) {
-    setOrderBy(e.target.value);
+    setOrderBy({ ...orderBy, [e.target.name]: e.target.value });
   }
 
   return (
@@ -28,16 +31,18 @@ export default function SearchBar(props) {
           placeholder="Search for a Recipe"
           onChange={handleInputChange}
         />
+        <span>Order By</span>
+        <select name="by" className="input" onChange={onSelect}>
+          <option value="Alphabetical">Alphabetical</option>
+          <option value="HealthScore">Health Score</option>
+        </select>
+        <select name="order" className="input" onChange={onSelect}>
+          <option value="Ascendant">Ascendant</option>
+          <option value="Descendant">Descendant</option>
+        </select>
         <button className="button" onClick={() => onSearch(search, orderBy)}>
           Search
         </button>
-      </div>
-      <div>
-        <span>Order By</span>
-        <select name="type" className="input" onChange={onSelect}>
-          <option value="HealthScore">Health Score</option>
-          <option value="Alphabetical">Alphabetical</option>
-        </select>
       </div>
     </div>
   );
