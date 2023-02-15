@@ -37,9 +37,9 @@ recipeRouter.get("/", async (req, res) => {
   try {
     const { name } = req.query;
 
-    let apiRecipes=[]
+    // let apiRecipes=[]
     // Consulta la API
-    // let apiRecipes = await getAPIRecipes(name);
+    let apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
     let dbRecipes = await getDBRecipes(name);

@@ -1,27 +1,39 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import Card from "./Card";
 import DailyRecipes from "./DailyRecipes";
+import Paginate from "./Paginate";
 
 export default function Renderer(props) {
   const { dailyRecipes, recipes, onClose } = props;
 
-  const pageNumbers = Math.ceil(
-    useSelector((state) => state.recipes).length / 9
-  );
 
-  console.log(pageNumbers);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recipesPerPage = 9; // este estado local setea cuantas cartas entran por pagina
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipe = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
+  function paginator(n){
+    setCurrentPage(n)
+  }
 
   return (
     <div>
-      {!recipes.length && (
+      {!currentRecipe.length && (
         <div className="dailyMealsContainer">
           <DailyRecipes dailyRecipes={dailyRecipes} onClose={onClose} />
         </div>
       )}
-      <div></div>
+      <div>
+      <Paginate
+        recipesPerPage={recipesPerPage}
+        allRecipes={recipes.length}
+        paginator={paginator}
+      />
+      </div>
       <hr />
       <div className="recipesContainer">
-        {recipes.map((r) => (
+        {currentRecipe.map((r) => (
           <Card
             key={r.id}
             id={r.id}

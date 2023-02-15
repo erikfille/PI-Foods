@@ -2,6 +2,7 @@ export const GET_RECIPES = "GET_RECIPES";
 export const GET_DAILY_RECIPES = "GET_DAILY_RECIPE";
 export const FILTER_RECIPES = "FILTER_RECIPES";
 export const FILTER_DAILY_RECIPES = "FILTER_DAILY_RECIPES";
+export const CHANGE_PAGE = "CHANGE_PAGE";
 
 export function getAllRecipes(recipes) {
   return {
@@ -29,4 +30,11 @@ export function deleteDailyRecipe(id) {
     type: FILTER_DAILY_RECIPES,
     payload: id,
   };
+}
+
+export function changePage(num) {
+  return {
+    type: CHANGE_PAGE,
+    payload: num
+  }
 }

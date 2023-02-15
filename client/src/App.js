@@ -11,7 +11,6 @@ import {
 } from "./redux/actions";
 import Nav from "./components/Nav/Nav";
 import Landing from "./components/Landing/Landing";
-import DailyRecipes from "./components/Cards/DailyRecipes";
 import Renderer from "./components/Cards/Renderer";
 import Detail from "./components/Cards/Detail";
 import Form from "./components/Creation/Form";
@@ -39,14 +38,13 @@ function App() {
 
         dispatch(getDailyRecipes(dailyMeals));
       });
-  }, []);
+  }, [dispatch]);
 
   function goToRecipeCreator() {
     return navigate("/createRecipe");
   }
 
   async function createRecipe(userData) {
-    console.log(userData);
     const response = await fetch("http://localhost:3001/recipes", {
       method: "POST",
       headers: {
@@ -81,7 +79,6 @@ function App() {
     await fetch(`http://localhost:3001/recipes?name=${name}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         let recipes = [];
         if (order.by === "Alphabetical") {
           recipes = data.sort((a, b) => sortTitle(a, b, order.order));
@@ -89,12 +86,9 @@ function App() {
         if (order.by === "HealthScore") {
           recipes = data.sort((a, b) => sortHealthScore(a, b, order.order));
         }
-        console.log(recipes);
         dispatch(getAllRecipes(recipes));
       });
   }
-
-  function onPageChange() {}
 
   function onClose(id, type) {
     if (type === "recipe") {
@@ -118,12 +112,11 @@ function App() {
             <Renderer
               dailyRecipes={dailyRecipes}
               recipes={recipes}
-              onPageChange={onPageChange}
               onClose={onClose}
             />
           }
         />
-        <Route path="/recipe/:recipeId" element={<Detail />} />
+        <Route path="/recipes/:recipeId" element={<Detail />} />
         <Route
           path="/createRecipe"
           element={<Form createRecipe={createRecipe} />}
