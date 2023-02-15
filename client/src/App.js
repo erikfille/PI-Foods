@@ -7,11 +7,12 @@ import {
   getDailyRecipes,
   deleteRecipe,
   deleteDailyRecipe,
+  changePage,
 } from "./redux/actions";
 import Nav from "./components/Nav/Nav";
 import Landing from "./components/Landing/Landing";
 import DailyRecipes from "./components/Cards/DailyRecipes";
-import Cards from "./components/Cards/Cards";
+import Renderer from "./components/Cards/Renderer";
 import Detail from "./components/Cards/Detail";
 import Form from "./components/Creation/Form";
 import About from "./components/About/About";
@@ -44,17 +45,62 @@ function App() {
     return navigate("/createRecipe");
   }
 
-  function createRecipe(userData) {}
+  async function createRecipe(userData) {
+    console.log(userData);
+    const response = await fetch("http://localhost:3001/recipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    return window.alert(response);
+  }
 
-  async function onSearch(name, order) {}
+  function sortTitle(a, b, order) {
+    const titleA = a.title.toUpperCase();
+    const titleB = b.title.toUpperCase();
+
+    if (order === "Ascendant") {
+      if (titleA < titleB) return -1;
+      if (titleA > titleB) return 1;
+      return 0;
+    } else if (order === "Descendant") {
+      if (titleB < titleA) return -1;
+      if (titleB > titleA) return 1;
+      return 0;
+    }
+  }
+
+  function sortHealthScore(a, b, order) {
+    if (order === "Ascendant") return a.healthScore - b.healthScore;
+    else if (order === "Descendant") return b.healthScore - a.healthScore;
+  }
+
+  async function onSearch(name, order) {
+    await fetch(`http://localhost:3001/recipes?name=${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        let recipes = [];
+        if (order.by === "Alphabetical") {
+          recipes = data.sort((a, b) => sortTitle(a, b, order.order));
+        }
+        if (order.by === "HealthScore") {
+          recipes = data.sort((a, b) => sortHealthScore(a, b, order.order));
+        }
+        console.log(recipes);
+        dispatch(getAllRecipes(recipes));
+      });
+  }
+
+  function onPageChange() {}
 
   function onClose(id, type) {
     if (type === "recipe") {
-      console.log("llegue al dispatch");
       dispatch(deleteRecipe(id));
     }
     if (type === "dailyRecipe") {
-      console.log("llegue al dispatch");
       dispatch(deleteDailyRecipe(id));
     }
   }
@@ -62,19 +108,20 @@ function App() {
   return (
     <div className="App">
       {location.pathname !== "/" && (
-        <Nav goToRecipeCreator={goToRecipeCreator} />
+        <Nav onSearch={onSearch} goToRecipeCreator={goToRecipeCreator} />
       )}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route
           path="/home"
           element={
-            <DailyRecipes dailyRecipes={dailyRecipes} onClose={onClose} />
+            <Renderer
+              dailyRecipes={dailyRecipes}
+              recipes={recipes}
+              onPageChange={onPageChange}
+              onClose={onClose}
+            />
           }
-        />
-        <Route
-          path="/search"
-          element={<Cards recipes={recipes} onClose={onClose} />}
         />
         <Route path="/recipe/:recipeId" element={<Detail />} />
         <Route
