@@ -1,7 +1,7 @@
 import Card from "./Card";
 
 export default function DailyRecipes(props) {
-  const { dailyRecipes, onClose } = props;
+  const { dailyRecipes } = props;
 
   return (
     <div className="dailyMealsContainer">
@@ -18,7 +18,6 @@ export default function DailyRecipes(props) {
           image={r.image}
           diets={r.diets}
           dishTypes={r.dishTypes}
-          onClose={onClose}
           type="dailyRecipe"
         />
       ))}

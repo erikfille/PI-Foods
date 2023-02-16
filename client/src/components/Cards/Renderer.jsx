@@ -4,7 +4,7 @@ import DailyRecipes from "./DailyRecipes";
 import Paginate from "./Paginate";
 
 export default function Renderer(props) {
-  const { dailyRecipes, recipes, onClose } = props;
+  const { dailyRecipes, recipes } = props;
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,7 +21,7 @@ export default function Renderer(props) {
     <div>
       {!currentRecipe.length && (
         <div className="dailyMealsContainer">
-          <DailyRecipes dailyRecipes={dailyRecipes} onClose={onClose} />
+          <DailyRecipes dailyRecipes={dailyRecipes} />
         </div>
       )}
       <div>
@@ -44,7 +44,6 @@ export default function Renderer(props) {
             image={r.image}
             diets={r.diets}
             dishTypes={r.dishTypes}
-            onClose={onClose}
             type="recipe"
           />
         ))}

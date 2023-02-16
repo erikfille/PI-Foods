@@ -2,16 +2,13 @@ import {
   GET_DAILY_RECIPES,
   GET_RECIPES,
   FILTER_RECIPES,
-  FILTER_DAILY_RECIPES,
-  CHANGE_PAGE
+  ALL_RECIPES,
 } from "./actions";
 
 const initialState = {
   recipes: [],
   filteredRecipes: [],
   dailyRecipes: [],
-  filteredDailyRecipes: [],
-  recipePage: 1,
 };
 
 export default function reducer(state = initialState, { type, payload }) {
@@ -26,24 +23,16 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         dailyRecipes: payload,
-        filteredDailyRecipes: payload,
       };
     case FILTER_RECIPES:
       return {
         ...state,
-        filteredRecipes: state.recipes.filter((c) => c.id !== payload),
+        filteredRecipes: state.recipes.filter((r) => r.diets.includes(payload)),
       };
-    case FILTER_DAILY_RECIPES:
+    case ALL_RECIPES:
       return {
         ...state,
-        filteredDailyRecipes: state.filteredDailyRecipes.filter(
-          (c) => c.id !== payload
-        ),
-      };
-    case CHANGE_PAGE:
-      return {
-        ...state,
-        recipePage: payload,
+        filteredRecipes: state.recipes,
       };
     default:
       return state;

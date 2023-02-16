@@ -1,8 +1,7 @@
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_DAILY_RECIPES = "GET_DAILY_RECIPE";
 export const FILTER_RECIPES = "FILTER_RECIPES";
-export const FILTER_DAILY_RECIPES = "FILTER_DAILY_RECIPES";
-export const CHANGE_PAGE = "CHANGE_PAGE";
+export const ALL_RECIPES = "ALL_RECIPES";
 
 export function getAllRecipes(recipes) {
   return {
@@ -13,28 +12,20 @@ export function getAllRecipes(recipes) {
 
 export function getDailyRecipes(dailyRecipes) {
   return {
-      type: GET_DAILY_RECIPES,
-      payload: dailyRecipes,
-    };
+    type: GET_DAILY_RECIPES,
+    payload: dailyRecipes,
   };
+}
 
-export function deleteRecipe(id) {
+export function filterRecipe(filter) {
   return {
     type: FILTER_RECIPES,
-    payload: id,
+    payload: filter,
   };
 }
 
-export function deleteDailyRecipe(id) {
+export function unfilterRecipe() {
   return {
-    type: FILTER_DAILY_RECIPES,
-    payload: id,
+    type: ALL_RECIPES,
   };
-}
-
-export function changePage(num) {
-  return {
-    type: CHANGE_PAGE,
-    payload: num
-  }
 }

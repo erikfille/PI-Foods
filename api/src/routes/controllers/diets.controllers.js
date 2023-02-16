@@ -16,11 +16,11 @@ async function createDiets() {
       { name: "Vegetarian" },
       { name: "Lacto-Vegetarian" },
       { name: "Ovo-Vegetarian" },
-      { name: "Pescatarian" },
-      { name: "Paleo" },
+      { name: "Pescetarian" },
+      { name: "Paleolithic" },
       { name: "Primal" },
       { name: "Low FODMAP" },
-      { name: "Whole30" },
+      { name: "Whole 30" },
     ];
     return await Diets.bulkCreate(basicDiets);
   } else return;
@@ -46,7 +46,8 @@ async function getDbDiets() {
 }
 
 async function getDiets() {
-  const apiDiets = await getApiDiets();
+  // const apiDiets = await getApiDiets();
+  const apiDiets = [];
   const dbDiets = await getDbDiets();
 
   let diets = apiDiets.concat(dbDiets).flat(2);

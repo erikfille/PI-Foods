@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 
 export default function Card(props) {
-  const { id, title, image, diets, dishTypes, onClose, type } = props;
+  const { id, title, image, diets, dishTypes, type } = props;
 
   const recipeCard = (
     <div>
-      <button className="closeButton" onClick={() => onClose(id, type)}>
-        X
-      </button>
       <div>
         <Link to={`/recipes/${id}`}>
           <h1 className="title">{title}</h1>
@@ -27,9 +24,6 @@ export default function Card(props) {
 
   const dailyRecipeCard = (
     <div>
-      <button className="closeButton" onClick={() => onClose(id, type)}>
-        X
-      </button>
       <div>
         <Link to={`/recipes/${id}`}>
           <h1 className="title">{title}</h1>

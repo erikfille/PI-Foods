@@ -1,13 +1,12 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllRecipes,
   getDailyRecipes,
-  deleteRecipe,
-  deleteDailyRecipe,
-  changePage,
+  filterRecipe,
+  unfilterRecipe,
 } from "./redux/actions";
 import Nav from "./components/Nav/Nav";
 import Landing from "./components/Landing/Landing";
@@ -20,8 +19,8 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const recipes = useSelector((state) => state.recipes);
-  const dailyRecipes = useSelector((state) => state.filteredDailyRecipes);
+  const recipes = useSelector((state) => state.filteredRecipes);
+  const dailyRecipes = useSelector((state) => state.dailyRecipes);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes/all`)
@@ -90,31 +89,25 @@ function App() {
       });
   }
 
-  function onClose(id, type) {
-    if (type === "recipe") {
-      dispatch(deleteRecipe(id));
-    }
-    if (type === "dailyRecipe") {
-      dispatch(deleteDailyRecipe(id));
-    }
+  function filterRecipes(filter) {
+    if (filter === "All") dispatch(unfilterRecipe());
+    if (filter !== "All") dispatch(filterRecipe(filter));
   }
 
   return (
     <div className="App">
       {location.pathname !== "/" && (
-        <Nav onSearch={onSearch} goToRecipeCreator={goToRecipeCreator} />
+        <Nav
+          onSearch={onSearch}
+          filterRecipes={filterRecipes}
+          goToRecipeCreator={goToRecipeCreator}
+        />
       )}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route
           path="/home"
-          element={
-            <Renderer
-              dailyRecipes={dailyRecipes}
-              recipes={recipes}
-              onClose={onClose}
-            />
-          }
+          element={<Renderer dailyRecipes={dailyRecipes} recipes={recipes} />}
         />
         <Route path="/recipes/:recipeId" element={<Detail />} />
         <Route
