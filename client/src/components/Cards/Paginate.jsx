@@ -10,7 +10,7 @@ export default function Paginate({ recipesPerPage, allRecipes, paginator }) {
       <ul>
         {pageNumbers.map((number) => (
           <li>
-            <a onClick={() => paginator(number)}>{number}</a>
+            <a href="#" onClick={() => paginator(number)}>{number}</a>
           </li>
         ))}
       </ul>

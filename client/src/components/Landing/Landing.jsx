@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import "./landing.modules.css";
+import logo from "../../assets/img/logo.png";
 
 export default function Landing() {
   const navigate = useNavigate();
 
   function enterSite() {
-    navigate("/home")
+    navigate("/home");
   }
 
   return (
-    <div>
-      <h1>The Good Cook Book</h1>
-      <button className="enter" onClick={()=>enterSite()}>
+    <div className="landing">
+      <h1 className="welcome">Welcome To</h1>
+        <img className="logo" src={logo} alt="Logo/Home" />
+      <button className="enter" onClick={() => enterSite()}>
         Enter Site
       </button>
     </div>

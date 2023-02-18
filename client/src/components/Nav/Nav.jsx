@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
-import logo from "../../assets/img/Logo.jpg";
+import logo from "../../assets/img/logo.png";
 
 export default function Nav(props) {
   const { onSearch, goToRecipeCreator, filterRecipes } = props;
