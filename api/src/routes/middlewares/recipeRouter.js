@@ -49,7 +49,7 @@ recipeRouter.get("/", async (req, res) => {
 
     let allRecipes = apiRecipes.concat(dbRecipes);
 
-    res.status(200).send(allRecipes);
+    res.send(allRecipes);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
