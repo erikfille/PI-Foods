@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import "./searchBar.modules.css";
+
 
 export default function SearchBar(props) {
   const { onSearch, filterRecipes } = props;
@@ -44,7 +46,7 @@ export default function SearchBar(props) {
   }
 
   return (
-    <div className="inputContainer">
+    <div className="searchContainer">
       <div className="searchDiv">
         <label htmlFor="search">Search</label>
         <input
@@ -56,15 +58,6 @@ export default function SearchBar(props) {
           placeholder="Search for a Recipe"
           onChange={handleInputChange}
         />
-        <label htmlFor="diets">Filter By Diets</label>
-        <select name="diets" className="input" onChange={onFilterSelect}>
-          {filter.map((d) => (
-            <option value={`${d}`}>{d}</option>
-          ))}
-        </select>
-        <button className="button" onClick={() => filterRecipes(useFilter)}>
-          Filter
-        </button>
         <span>Order By</span>
         <select name="by" className="input" onChange={onSelect}>
           <option value="Alphabetical">Alphabetical</option>
@@ -75,7 +68,18 @@ export default function SearchBar(props) {
           <option value="Descendant">Descendant</option>
         </select>
         <button className="button" onClick={() => onSearch(search, orderBy)}>
-          Search
+          <span>Search</span>
+        </button>
+      </div>
+      <div className="filterDiv">
+        <label htmlFor="diets">Filter By Diets</label>
+        <select name="diets" className="input" onChange={onFilterSelect}>
+          {filter.map((d) => (
+            <option value={`${d}`}>{d}</option>
+          ))}
+        </select>
+        <button className="button" onClick={() => filterRecipes(useFilter)}>
+          <span>Filter</span>
         </button>
       </div>
     </div>

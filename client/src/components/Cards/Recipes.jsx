@@ -1,14 +1,13 @@
 import Card from "./Card";
 
 export default function DailyRecipes(props) {
-  const { dailyRecipes } = props;
+  const { recipes } = props;
 
   return (
     <div className="recipesContainer">
-      <h1>Daily Meals</h1>
-      {dailyRecipes.map((r, idx) => (
+      {recipes.map((r) => (
         <Card
-          key={r.id + Math.random() * 100}
+          key={r.id}
           id={r.id}
           title={r.title}
           healthScore={r.healthScore}
@@ -17,7 +16,7 @@ export default function DailyRecipes(props) {
           image={r.image}
           diets={r.diets}
           dishTypes={r.dishTypes}
-          type="dailyRecipe"
+          type="recipe"
         />
       ))}
     </div>

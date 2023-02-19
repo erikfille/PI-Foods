@@ -1,0 +1,74 @@
+.cardContainer {
+  margin: 0%;
+}
+
+.cardContainer .infoContainer .imgContainer {
+  height: 30vh;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-around;
+  margin: 2vw 2vh;
+  background-color: #fffaeb;
+  box-shadow: 00px 0px 20px #967c52;
+  width: 30vw;
+  border-radius: 20px;
+  /* object-fit: cover; */
+}
+
+hr {
+  color: #fffaeb;
+  opacity: 0.5;
+}
+
+.topHr {
+  width: 75%;
+  margin-top: 2vh;
+}
+
+.botHr {
+  width: 50%;
+  margin-bottom: 5vh;
+}
+
+.elemHr {
+  width: 40%;
+}
+
+.titleDiv {
+  display: block;
+  margin: auto;
+}
+
+.titleDiv h1 {
+  color: #967c52;
+  font-size: 1em;
+  font-weight: 800;
+  padding: 0.2em;
+}
+
+.titleDiv a {
+  text-decoration: none;
+}
+
+.titleDiv h1:hover {
+  color: #707043;
+  text-decoration: none;
+  scale: 102%;
+  transition: 0.75s;
+}
+
+.imgContainer {
+  object-fit: cover;
+  width: 20vw;
+  height: 100%;
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  max-width: auto;
+  height: 100%;
+}

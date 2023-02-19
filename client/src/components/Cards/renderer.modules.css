@@ -1,0 +1,51 @@
+.rendererContainer {
+  background-color: #fffaeb;
+  display: inline-block;
+  margin-top: 15vh;
+  width: 100vw;
+  height: 100vh;
+  position: center;
+}
+
+.searchContainer {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fffaeb;
+  margin-top: 1.8vh;
+  padding: auto;
+  width: 100vw;
+  align-items: center;
+}
+
+.recipesContainer {
+  margin-top: 1.5vh;
+}
+
+.roundButton {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vh;
+  z-index: 999;
+  border-radius: 50%;
+  background-color: #f0f0d8;
+  font-weight: 900;
+  font-size: 1em;
+  font-style: italic;
+  line-height: 1.2;
+  color: #967c52;
+  box-shadow: inset 10px 5px 40px rgba(150, 124, 82, 0.75),
+    0px 0px 20px rgba(150, 124, 82, 0.75);
+  padding: 2em;
+  border: none;
+  width: auto;
+  cursor: pointer;
+}
+
+.roundButton:hover {
+  scale: 105%;
+  box-shadow: inset 10px 5px 40px rgba(150, 124, 82, 0.75),
+    0px 0px 20px rgba(150, 124, 82, 0.5);
+  transition: 0.75s;
+}

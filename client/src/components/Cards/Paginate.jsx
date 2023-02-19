@@ -6,7 +6,7 @@ export default function Paginate({ recipesPerPage, allRecipes, paginator }) {
     pageNumbers.push(i);
   }
   return (
-    <nav className="paginado">
+    <nav className="paginateNav">
       <ul>
         {pageNumbers.map((number) => (
           <li>

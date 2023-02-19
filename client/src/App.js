@@ -96,18 +96,20 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== "/" && (
-        <Nav
-          onSearch={onSearch}
-          filterRecipes={filterRecipes}
-          goToRecipeCreator={goToRecipeCreator}
-        />
-      )}
+      {location.pathname !== "/" && <Nav />}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route
           path="/home"
-          element={<Renderer dailyRecipes={dailyRecipes} recipes={recipes} />}
+          element={
+            <Renderer
+              dailyRecipes={dailyRecipes}
+              recipes={recipes}
+              onSearch={onSearch}
+              filterRecipes={filterRecipes}
+              goToRecipeCreator={goToRecipeCreator}
+            />
+          }
         />
         <Route path="/recipes/:recipeId" element={<Detail />} />
         <Route

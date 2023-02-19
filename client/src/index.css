@@ -5,9 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  text-align: center;
+  display: flex;
 }
 
 code {
   font-family: 'Raleway', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

@@ -12,9 +12,10 @@ export default function Landing() {
   return (
     <div className="landing">
       <h1 className="welcome">Welcome To</h1>
-        <img className="logo" src={logo} alt="Logo/Home" />
+      <img className="logo" src={logo} alt="Logo/Home" />
+      <br/>
       <button className="enter" onClick={() => enterSite()}>
-        Enter Site
+        <span>Enter Site</span>
       </button>
     </div>
   );
