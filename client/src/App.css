@@ -5,21 +5,3 @@
   font-weight: normal;
   color: #967c52;
 }
-
-input,
-select {
-  display: inline-block;
-  border: none;
-  border-radius: 4px;
-  background-color: #fffaeb;
-  color: #967c52;
-  font-weight: 400;
-  text-align: center;
-  padding: 8px;
-  margin: 0.5vw;
-  box-shadow: inset 0px 0px 15px 967c52;
-}
-
-div {
-  display: flex;
-}

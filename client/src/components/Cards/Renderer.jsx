@@ -26,18 +26,14 @@ export default function Renderer(props) {
         <SearchBar onSearch={onSearch} filterRecipes={filterRecipes} />
       </div>
       <br />
-      {!currentRecipe.length && (
-        <div className="dailyMealsContainer">
-          <DailyRecipes dailyRecipes={dailyRecipes} />
-        </div>
-      )}
+      {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />}
       <Paginate
         recipesPerPage={recipesPerPage}
         allRecipes={recipes.length}
         paginator={paginator}
       />
       <hr />
-      <Recipes recipes={recipes} />
+      {<Recipes recipes={recipes} />}
       <button className="roundButton" onClick={() => goToRecipeCreator()}>
         <span>
           Create <br /> Your <br /> Recipe

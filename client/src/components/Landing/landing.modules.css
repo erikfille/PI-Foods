@@ -10,6 +10,11 @@
   height: 100vh;
 }
 
+.landing h1 {
+  margin: 0px;
+  padding-top: 20vh;
+}
+
 .welcome {
   font-family: "raleway";
   color: #967c52;

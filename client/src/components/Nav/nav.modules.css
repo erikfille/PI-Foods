@@ -1,16 +1,19 @@
-nav {
+.navContainer {
+  display: inline-block;
   z-index: 99999;
   position: fixed;
-  margin-top: 0vh;
-  margin-left: 0vh;
+  margin: auto;
   width: 100vw;
-}
-
-.navContainer {
   background-color: #f0f0d8;
   box-shadow: 00px 0px 20px #967c52;
   font-size: 15px;
-  height: 15vh;
-  position: center;
+  height: 10vh;
   gap: 50px;
+  overflow: hidden;
+}
+
+.navContainer img {
+  height: 8vh;
+  width: auto;
+  margin: 1vw 8vw;
 }

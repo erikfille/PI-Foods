@@ -7,24 +7,20 @@ export default function Card(props) {
   const recipeCard = (
     <div className="cardContainer">
       <div className="infoContainer">
-        <div className="titleDiv">
-          <hr className="topHr" />
-          <Link to={`/recipes/${id}`}>
-            <h1>{title}</h1>
-          </Link>
-          <hr className="botHr" />
-          <hr className="elemHr" />
-          {diets.map((d) => (
-            <>
-              <span>{d}</span>
-              <hr className="elemHr" />
-            </>
-          ))}
-          <hr className="elemHr" />
-        </div>
-        <div className="imgContainer" style={`background-image: url(${image})`}>
-          {/* <img className="image" src={image} alt={title} /> */}
-        </div>
+        <hr className="topHr" />
+        <Link to={`/recipes/${id}`}>
+          <h1>{title}</h1>
+        </Link>
+        <hr className="botHr" />
+        {diets.map((d) => (
+          <>
+            <span className="diet">{d}</span>
+            <br />
+          </>
+        ))}
+      </div>
+      <div className="imgContainer">
+        <img className="image" src={image} alt={title} />
       </div>
     </div>
   );
@@ -32,23 +28,20 @@ export default function Card(props) {
   const dailyRecipeCard = (
     <div className="cardContainer">
       <div className="infoContainer">
-        <div className="titleDiv">
-          <hr className="topHr" />
-          <Link to={`/recipes/${id}`}>
-            <h1>{title}</h1>
-          </Link>
-          <hr className="botHr" />
-          <hr className="elemHr" />
-          {dishTypes.map((d) => (
-            <>
-              <span>{d}</span>
-              <hr className="elemHr" />
-            </>
-          ))}
-        </div>
-        <div className="imgContainer" style={`background-image: url(${image})`}>
-          // <img className="image" src={image} alt={title} />
-        </div>
+        <hr className="topHr" />
+        <Link to={`/recipes/${id}`}>
+          <h1>{title}</h1>
+        </Link>
+        <hr className="botHr" />
+        {dishTypes.map((d) => (
+          <>
+            <span>{d}</span>
+            <br />
+          </>
+        ))}
+      </div>
+      <div className="imgContainer">
+        <img className="image" src={image} alt={title} />
       </div>
     </div>
   );

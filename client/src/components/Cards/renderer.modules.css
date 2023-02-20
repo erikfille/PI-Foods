@@ -1,10 +1,7 @@
 .rendererContainer {
-  background-color: #fffaeb;
-  display: inline-block;
-  margin-top: 15vh;
+  margin-top: 12vh;
   width: 100vw;
   height: 100vh;
-  position: center;
 }
 
 .searchContainer {
@@ -13,14 +10,13 @@
   align-items: center;
   justify-content: space-around;
   background-color: #fffaeb;
-  margin-top: 1.8vh;
-  padding: auto;
+  padding-top: .5vh;
   width: 100vw;
   align-items: center;
 }
 
 .recipesContainer {
-  margin-top: 1.5vh;
+  margin-top: 2vh;
 }
 
 .roundButton {
