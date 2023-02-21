@@ -6,14 +6,10 @@ export default function Paginate({ recipesPerPage, allRecipes, paginator }) {
     pageNumbers.push(i);
   }
   return (
-    <nav className="paginateNav">
-      <ul>
-        {pageNumbers.map((number) => (
-          <li>
-            <a href="#" onClick={() => paginator(number)}>{number}</a>
-          </li>
+    <div className="paginateDiv">
+      {pageNumbers.map((number) => (
+            <button onClick={() => paginator(number)}>{number}</button>
         ))}
-      </ul>
-    </nav>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 .cardContainer {
   display: inline-block;
   width: 20vw;
-  height: 30vh;
+  height: 40vh;
   background-color: #fffaeb;
   box-shadow: 5px 5px 10px rgba(150, 124, 82, 0.75);
   cursor: pointer;
@@ -10,20 +10,32 @@
   margin: 20px;
 }
 
+.topHr {
+  width: 75%;
+  margin-bottom: 0px;
+  margin-top: 2vh;
+}
+
+.botHr {
+  width: 50%;
+  margin-top: 0px;
+}
+
 .cardContainer:hover {
   scale: 110%;
-  transition: .75s;
+  transition: all 0.75s;
 }
 
 .cardContainer h1 {
   font-size: 1rem;
   font-weight: 900;
   padding: 1vw;
+  margin: 0px;
 }
 
-.infoContainer {
-  float: left;
-  width: 70%;
+.cardContainer a {
+  color: #967c52;
+  text-decoration: none;
 }
 
 .infoContainer {
@@ -36,18 +48,18 @@
 }
 
 .infoContainer .diet {
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 .imgContainer {
-  float:right;
-  height: 30vh;
+  float: right;
+  height: 40vh;
   width: 40%;
   overflow: hidden;
   border-radius: 0px 20px 20px 0px;
 }
 
 .imgContainer img {
-  height: 30vh;
+  height: 40vh;
   width: auto;
 }

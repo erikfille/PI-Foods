@@ -32,8 +32,7 @@ export default function Renderer(props) {
         allRecipes={recipes.length}
         paginator={paginator}
       />
-      <hr />
-      {<Recipes recipes={recipes} />}
+      {<Recipes recipes={currentRecipe} />}
       <button className="roundButton" onClick={() => goToRecipeCreator()}>
         <span>
           Create <br /> Your <br /> Recipe

@@ -12,6 +12,7 @@ export default function Card(props) {
           <h1>{title}</h1>
         </Link>
         <hr className="botHr" />
+        <h4>Diets</h4>
         {diets.map((d) => (
           <>
             <span className="diet">{d}</span>
@@ -33,6 +34,7 @@ export default function Card(props) {
           <h1>{title}</h1>
         </Link>
         <hr className="botHr" />
+        <h4>Dish Type</h4>
         {dishTypes.map((d) => (
           <>
             <span>{d}</span>
