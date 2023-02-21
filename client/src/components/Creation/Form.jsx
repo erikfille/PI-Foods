@@ -1,6 +1,6 @@
 import { useState } from "react";
 import validation from "./validation.js";
-// import CloudinaryUploadWidget from "./CloudinaryUploadWidget"
+import UploadWidget from "./UploadWidget.jsx";
 import "./form.modules.css";
 
 export default function Form(props) {
@@ -21,7 +21,6 @@ export default function Form(props) {
     healthScore: "",
     summary: "",
     instructions: "",
-    image: "",
     diets: "",
     dishTypes: "",
   });
@@ -44,6 +43,10 @@ export default function Form(props) {
     createRecipe(inputs);
   }
 
+  function onUpload(url) {
+    setInputs({ ...inputs, image: url });
+  }
+
   return (
     <div className="formContainer">
       <h1>¡Create Your Recipe!</h1>
@@ -51,6 +54,7 @@ export default function Form(props) {
         <form onSubmit={handleSubmit}>
           <div className="options">
             <label htmlFor="title">Title: </label>
+            <br />
             <input
               type="text"
               name="title"
@@ -59,9 +63,10 @@ export default function Form(props) {
               className={errors.title && "danger"}
             />
             {errors.title && <span>{errors.title}</span>}
-          </div>{" "}
+          </div>
           <div className="options">
             <label htmlFor="healthScore">Health Score: </label>
+            <br />
             <input
               type="number"
               name="healthScore"
@@ -70,10 +75,11 @@ export default function Form(props) {
               className={errors.healthScore && "danger"}
             />
             {errors.healthScore && <span>{errors.healthScore}</span>}
-          </div>{" "}
+          </div>
           <div className="options">
             <label htmlFor="summary">Summary: </label>
-            <input
+            <br />
+            <textarea
               type="text"
               name="summary"
               value={inputs.summary}
@@ -84,6 +90,7 @@ export default function Form(props) {
           </div>
           <div className="options">
             <label htmlFor="instructions">Instructions: </label>
+            <br />
             <input
               type="text"
               name="instructions"
@@ -92,20 +99,10 @@ export default function Form(props) {
               className={errors.instructions && "danger"}
             />
             {errors.instructions && <span>{errors.instructions}</span>}
-          </div>{" "}
-          <div className="options">
-            <label htmlFor="image">Image Link: </label>
-            <input
-              type="text"
-              name="image"
-              value={inputs.image}
-              onChange={handleInputChange}
-              className={errors.image && "danger"}
-            />
-            {errors.image && <span>{errors.image}</span>}
-          </div>{" "}
+          </div>
           <div className="options">
             <label htmlFor="diets">Diets: </label>
+            <br />
             <input
               type="text"
               name="diets"
@@ -114,9 +111,10 @@ export default function Form(props) {
               className={errors.diets && "danger"}
             />
             {errors.diets && <span>{errors.diets}</span>}
-          </div>{" "}
+          </div>
           <div className="options">
             <label htmlFor="dishTypes">Dish Type: </label>
+            <br />
             <input
               type="text"
               name="dishTypes"
@@ -126,6 +124,19 @@ export default function Form(props) {
             />
             {errors.dishTypes && <span>{errors.dishTypes}</span>}
           </div>
+          <UploadWidget onUpload={onUpload} /> <br />
+          {/* <div className="options">
+            <label htmlFor="file">Image: </label>
+            <br />
+            <input
+              type="file"
+              name="file"
+              value={inputs.image}
+              onChange={uploadImage}
+              className={errors.image && "danger"}
+            />
+            {errors.image && <span>{errors.image}</span>}
+          </div> */}
           <button>Submit</button>
         </form>
       </div>
