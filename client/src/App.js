@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,6 +21,8 @@ function App() {
   const navigate = useNavigate();
   const recipes = useSelector((state) => state.filteredRecipes);
   const dailyRecipes = useSelector((state) => state.dailyRecipes);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes/all`)
@@ -44,6 +46,7 @@ function App() {
   }
 
   async function createRecipe(userData) {
+    setLoading(true);
     const response = await fetch("http://localhost:3001/recipes", {
       method: "POST",
       headers: {
@@ -51,6 +54,7 @@ function App() {
       },
       body: JSON.stringify(userData),
     });
+    setLoading(false);
     return window.alert(response);
   }
 
@@ -75,6 +79,7 @@ function App() {
   }
 
   async function onSearch(name, order) {
+    setLoading(true);
     await fetch(`http://localhost:3001/recipes?name=${name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -85,6 +90,7 @@ function App() {
         if (order.by === "HealthScore") {
           recipes = data.sort((a, b) => sortHealthScore(a, b, order.order));
         }
+        setLoading(false);
         dispatch(getAllRecipes(recipes));
       });
   }
@@ -108,13 +114,14 @@ function App() {
               onSearch={onSearch}
               filterRecipes={filterRecipes}
               goToRecipeCreator={goToRecipeCreator}
+              loading={loading}
             />
           }
         />
         <Route path="/recipes/:recipeId" element={<Detail />} />
         <Route
           path="/createRecipe"
-          element={<Form createRecipe={createRecipe} />}
+          element={<Form createRecipe={createRecipe} loading={loading}/>}
         />
         <Route path="/about" element={<About />} />
       </Routes>
