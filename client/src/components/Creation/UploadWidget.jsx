@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 
 export default function UploadWidget(props) {
-
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
@@ -15,6 +14,7 @@ export default function UploadWidget(props) {
       function (error, result) {
         if (!error && result && result.event === "success") {
           props.onUpload(result.info.secure_url);
+          console.log(result.info.secure_url)
         }
       }
     );
@@ -22,7 +22,7 @@ export default function UploadWidget(props) {
 
   return (
     <div className="widgetContainer">
-      <span>Upload an Image</span>
+      <span className="uploadText">Upload an Image</span>
       <br />
       <a onClick={() => widgetRef.current.open()}>Upload</a>
     </div>

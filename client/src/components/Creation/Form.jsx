@@ -52,7 +52,7 @@ export default function Form(props) {
       <h1>¡Create Your Recipe!</h1>
       <div className="form">
         <form onSubmit={handleSubmit}>
-          <div className="options">
+          <div className="inputsContainer">
             <label htmlFor="title">Title: </label>
             <br />
             <input
@@ -63,8 +63,6 @@ export default function Form(props) {
               className={errors.title && "danger"}
             />
             {errors.title && <span>{errors.title}</span>}
-          </div>
-          <div className="options">
             <label htmlFor="healthScore">Health Score: </label>
             <br />
             <input
@@ -75,8 +73,6 @@ export default function Form(props) {
               className={errors.healthScore && "danger"}
             />
             {errors.healthScore && <span>{errors.healthScore}</span>}
-          </div>
-          <div className="options">
             <label htmlFor="summary">Summary: </label>
             <br />
             <textarea
@@ -87,8 +83,6 @@ export default function Form(props) {
               className={errors.summary && "danger"}
             />
             {errors.summary && <span>{errors.summary}</span>}
-          </div>
-          <div className="options">
             <label htmlFor="instructions">Instructions: </label>
             <br />
             <input
@@ -99,8 +93,6 @@ export default function Form(props) {
               className={errors.instructions && "danger"}
             />
             {errors.instructions && <span>{errors.instructions}</span>}
-          </div>
-          <div className="options">
             <label htmlFor="diets">Diets: </label>
             <br />
             <input
@@ -111,8 +103,6 @@ export default function Form(props) {
               className={errors.diets && "danger"}
             />
             {errors.diets && <span>{errors.diets}</span>}
-          </div>
-          <div className="options">
             <label htmlFor="dishTypes">Dish Type: </label>
             <br />
             <input
@@ -124,20 +114,21 @@ export default function Form(props) {
             />
             {errors.dishTypes && <span>{errors.dishTypes}</span>}
           </div>
-          <UploadWidget onUpload={onUpload} /> <br />
-          {/* <div className="options">
-            <label htmlFor="file">Image: </label>
-            <br />
-            <input
-              type="file"
-              name="file"
-              value={inputs.image}
-              onChange={uploadImage}
-              className={errors.image && "danger"}
-            />
-            {errors.image && <span>{errors.image}</span>}
-          </div> */}
-          <button>Submit</button>
+          <div className="imgContainer">
+            <div className="widgetButton">
+              <UploadWidget onUpload={onUpload} />
+              <br />
+              {inputs.image && (
+                <div className="uploadedImage">
+                  <img src={inputs.image} alt="Uploaded Image" width="1vw" />
+                </div>
+              )}
+            </div>
+            <button className="submitButton">
+              <span>Submit Recipe</span>
+            </button>
+          </div>
+          <div className="floatClear"></div>
         </form>
       </div>
     </div>
