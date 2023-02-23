@@ -30,6 +30,14 @@ export default function Detail() {
     return navigate("/home");
   }
 
+  let summary
+  
+  if(Boolean(Number(recipeId))) {
+    summary = <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>
+  } else {
+    summary = <h4 className="summary">{recipe.summary}</h4>
+  }
+
   return (
     <div>
       <button className="closeButton" onClick={() => goHome()}>
@@ -50,7 +58,7 @@ export default function Detail() {
         </>
         <hr />
       </div>
-      <h4 className="summary">{recipe.summary}</h4>
+      {summary}
       <p>{recipe.instructions}</p>
       <div className="imgContainer">
         <img src={recipe.image} alt={recipe.title} />

@@ -120,7 +120,7 @@ export default function Form(props) {
               <br />
               {inputs.image && (
                 <div className="uploadedImage">
-                  <img src={inputs.image} alt="Uploaded Image" width="1vw" />
+                  <img src={inputs.image} alt="Uploaded" width="1vw" />
                 </div>
               )}
             </div>
