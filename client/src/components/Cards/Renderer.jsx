@@ -23,19 +23,23 @@ export default function Renderer(props) {
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipe = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
-  function paginator(n) {
-    setCurrentPage(n);
+  function paginator(n, str) {
+    if (str) {
+      setCurrentPage(n);
+    } else {
+      setCurrentPage(currentPage + n)
+    }
   }
 
   let cardsContainer = (
     <div>
       {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />}
+      {<Recipes recipes={currentRecipe} />}
       <Paginate
         recipesPerPage={recipesPerPage}
         allRecipes={recipes.length}
         paginator={paginator}
       />
-      {<Recipes recipes={currentRecipe} />}
     </div>
   );
 
