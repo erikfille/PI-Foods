@@ -16,7 +16,7 @@ export default function Renderer(props) {
     onSearch,
     diets,
     filterRecipes,
-    orderCards
+    orderCards,
   } = props;
 
   const [currentPage, setCurrentPage] = useState(1);

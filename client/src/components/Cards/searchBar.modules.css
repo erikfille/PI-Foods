@@ -1,3 +1,7 @@
+.searchContainer{
+  z-index: 999;
+}
+
 .searchDiv {
   font-weight: 700;
 }

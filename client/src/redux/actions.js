@@ -33,15 +33,15 @@ export function unfilterRecipe() {
 }
 
 export function orderRecipes(orderedRecipes) {
-    return {
-      type: ORDER_RECIPES,
-      payload: orderedRecipes,
-    };
+  return {
+    type: ORDER_RECIPES,
+    payload: orderedRecipes,
+  };
 }
 
 export function orderDailyRecipes(orderedRecipes) {
-    return {
-      type: ORDER_DAILY_RECIPES,
-      payload: orderedRecipes,
-    };
+  return {
+    type: ORDER_DAILY_RECIPES,
+    payload: orderedRecipes,
+  };
 }

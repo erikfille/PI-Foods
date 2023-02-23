@@ -2,10 +2,10 @@ import Card from "./Card";
 
 export default function Recipes(props) {
   const { recipes } = props;
-  
+
   return (
     <div className="recipesContainer">
-      {recipes.length ? <h1>Recipes for Your Search</h1> : "" }
+      {recipes.length ? <h1>Recipes for Your Search</h1> : ""}
       {recipes.map((r) => (
         <Card
           key={r.id}

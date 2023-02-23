@@ -24,18 +24,20 @@ export default function Detail() {
         setRecipe(data);
       })
       .catch((error) => window.alert("Algo salio mal, intentalo nuevamente"));
+
+    return () => setRecipe({});
   }, [recipeId]);
 
   function goHome() {
     return navigate("/home");
   }
 
-  let summary
-  
-  if(Boolean(Number(recipeId))) {
-    summary = <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>
+  let summary;
+
+  if (Boolean(Number(recipeId))) {
+    summary = <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>;
   } else {
-    summary = <h4 className="summary">{recipe.summary}</h4>
+    summary = <h4 className="summary">{recipe.summary}</h4>;
   }
 
   return (
