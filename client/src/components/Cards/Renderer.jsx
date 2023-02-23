@@ -9,12 +9,14 @@ import "./renderer.modules.css";
 
 export default function Renderer(props) {
   const {
-    dailyRecipes,
     recipes,
-    onSearch,
-    filterRecipes,
+    dailyRecipes,
     goToRecipeCreator,
     loading,
+    onSearch,
+    diets,
+    filterRecipes,
+    orderCards
   } = props;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,14 +29,16 @@ export default function Renderer(props) {
     if (str) {
       setCurrentPage(n);
     } else {
-      setCurrentPage(currentPage + n)
+      setCurrentPage(currentPage + n);
     }
   }
 
   let cardsContainer = (
     <div>
-      {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />}
-      {<Recipes recipes={currentRecipe} />}
+      {/* {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />} */}
+      <DailyRecipes dailyRecipes={dailyRecipes} />
+      <hr />
+      <Recipes recipes={currentRecipe} />
       <Paginate
         recipesPerPage={recipesPerPage}
         allRecipes={recipes.length}
@@ -46,7 +50,15 @@ export default function Renderer(props) {
   return (
     <div className="rendererContainer">
       <div className="searchContainer">
-        <SearchBar onSearch={onSearch} filterRecipes={filterRecipes} />
+        <SearchBar
+          diets={diets}
+          onSearch={onSearch}
+          setCurrentPage={setCurrentPage}
+          recipes={recipes}
+          dailyRecipes={dailyRecipes}
+          orderCards={orderCards}
+          filterRecipes={filterRecipes}
+        />
       </div>
       <br />
       {loading ? <Loader /> : cardsContainer}

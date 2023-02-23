@@ -1,12 +1,14 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllRecipes,
   getDailyRecipes,
-  filterRecipe,
   unfilterRecipe,
+  filterRecipe,
+  orderRecipes,
+  orderDailyRecipes,
 } from "./redux/actions";
 import Nav from "./components/Nav/Nav";
 import Landing from "./components/Landing/Landing";
@@ -20,9 +22,10 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const recipes = useSelector((state) => state.filteredRecipes);
-  const dailyRecipes = useSelector((state) => state.dailyRecipes);
+  const dailyRecipes = useSelector((state) => state.filteredDailyRecipes);
 
   const [loading, setLoading] = useState(false);
+  const [diets, setDiets] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes/all`)
@@ -41,6 +44,23 @@ function App() {
       });
   }, [dispatch]);
 
+  useEffect(() => {
+    fetch("http://localhost:3001/diet/")
+      .then((response) => response.json())
+      .then((data) => {
+        data.sort((a, b) => {
+          if (a < b) return -1;
+          if (a > b) return 1;
+          return 0;
+        });
+        data.unshift("All");
+        setDiets(data);
+      });
+    return () => {
+      setDiets([]);
+    };
+  }, []);
+
   function goToRecipeCreator() {
     return navigate("/createRecipe");
   }
@@ -56,6 +76,47 @@ function App() {
     });
     setLoading(false);
     return window.alert(response);
+  }
+
+  async function onSearch(name, order) {
+    setLoading(true);
+    await fetch(`http://localhost:3001/recipes?name=${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(getAllRecipes(data));
+        setLoading(false);
+      });
+  }
+
+  function filterRecipes(filter) {
+    if (filter === "All") dispatch(unfilterRecipe());
+    else if (filter !== "All") dispatch(filterRecipe(filter));
+  }
+
+  function orderCards(order) {
+    let orderedRecipes = [];
+    let orderedDailyRecipes = [];
+    if (order.by === "Alphabetical") {
+      orderedRecipes = [...recipes].sort((a, b) =>
+        sortTitle(a, b, order.order)
+      );
+      orderedDailyRecipes = [...dailyRecipes].sort((a, b) =>
+        sortTitle(a, b, order.order)
+      );
+    } else if (order.by === "HealthScore") {
+      orderedRecipes = [...recipes].sort((a, b) =>
+        sortHealthScore(a, b, order.order)
+      );
+      orderedDailyRecipes = [...dailyRecipes].sort((a, b) =>
+        sortHealthScore(a, b, order.order)
+      );
+    }
+    console.log("orderedRecipes: ", orderedRecipes);
+    console.log("orderedDailyRecipes: ", orderedDailyRecipes);
+
+    if (orderedRecipes.length) dispatch(orderRecipes(orderedRecipes));
+    if (orderedDailyRecipes.length)
+      dispatch(orderDailyRecipes(orderedDailyRecipes));
   }
 
   function sortTitle(a, b, order) {
@@ -78,28 +139,6 @@ function App() {
     else if (order === "Descendant") return b.healthScore - a.healthScore;
   }
 
-  async function onSearch(name, order) {
-    setLoading(true);
-    await fetch(`http://localhost:3001/recipes?name=${name}`)
-      .then((response) => response.json())
-      .then((data) => {
-        let recipes = [];
-        if (order.by === "Alphabetical") {
-          recipes = data.sort((a, b) => sortTitle(a, b, order.order));
-        }
-        if (order.by === "HealthScore") {
-          recipes = data.sort((a, b) => sortHealthScore(a, b, order.order));
-        }
-        setLoading(false);
-        dispatch(getAllRecipes(recipes));
-      });
-  }
-
-  function filterRecipes(filter) {
-    if (filter === "All") dispatch(unfilterRecipe());
-    if (filter !== "All") dispatch(filterRecipe(filter));
-  }
-
   return (
     <div className="App">
       {location.pathname !== "/" && <Nav />}
@@ -109,19 +148,21 @@ function App() {
           path="/home"
           element={
             <Renderer
-              dailyRecipes={dailyRecipes}
               recipes={recipes}
               onSearch={onSearch}
-              filterRecipes={filterRecipes}
               goToRecipeCreator={goToRecipeCreator}
               loading={loading}
+              dailyRecipes={dailyRecipes}
+              diets={diets}
+              filterRecipes={filterRecipes}
+              orderCards={orderCards}
             />
           }
         />
         <Route path="/recipes/:recipeId" element={<Detail />} />
         <Route
           path="/createRecipe"
-          element={<Form createRecipe={createRecipe} loading={loading}/>}
+          element={<Form createRecipe={createRecipe} loading={loading} />}
         />
         <Route path="/about" element={<About />} />
       </Routes>

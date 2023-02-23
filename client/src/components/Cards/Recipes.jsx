@@ -1,6 +1,6 @@
 import Card from "./Card";
 
-export default function DailyRecipes(props) {
+export default function Recipes(props) {
   const { recipes } = props;
   
   return (

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import "./searchBar.modules.css";
 
-
 export default function SearchBar(props) {
-  const { onSearch, filterRecipes } = props;
+  const { onSearch, diets, filterRecipes, orderCards } = props;
 
   const [search, setSearch] = useState("");
 
@@ -12,37 +11,30 @@ export default function SearchBar(props) {
     order: "Ascendant",
   });
 
-  const [filter, setFilter] = useState([]);
-
-  const [useFilter, setUseFilter] = useState("All");
+  const [filterByDiet, setFilterByDiet] = useState("All");
 
   useEffect(() => {
-    fetch("http://localhost:3001/diet/")
-      .then((response) => response.json())
-      .then((data) => {
-        data.sort((a, b) => {
-          if (a < b) return -1;
-          if (a > b) return 1;
-          return 0;
-        });
-        data.unshift("All");
-        setFilter(data);
-      });
-    return () => {
-      setFilter([]);
-    };
-  }, []);
+    orderCards(orderBy);
+  }, [orderBy]);
+
+  useEffect(() => {
+    filterRecipes(filterByDiet);
+  }, [filterByDiet]);
 
   function handleInputChange(e) {
     setSearch(e.target.value);
   }
 
-  function onSelect(e) {
-    setOrderBy({ ...orderBy, [e.target.name]: e.target.value });
+  function onFilterSelect(e) {
+    e.preventDefault();
+    if (e.target.value !== filterByDiet) {
+      setFilterByDiet(e.target.value);
+    }
   }
 
-  function onFilterSelect(e) {
-    setUseFilter(e.target.value);
+  function onSelect(e) {
+    e.preventDefault();
+    setOrderBy({ ...orderBy, [e.target.name]: e.target.value });
   }
 
   return (
@@ -58,6 +50,11 @@ export default function SearchBar(props) {
           placeholder="Search for a Recipe"
           onChange={handleInputChange}
         />
+        <button className="button" onClick={() => onSearch(search, orderBy)}>
+          <span>Search</span>
+        </button>
+      </div>
+      <div className="filterDiv">
         <span>Order By</span>
         <select name="by" className="input" onChange={onSelect}>
           <option value="Alphabetical">Alphabetical</option>
@@ -67,20 +64,14 @@ export default function SearchBar(props) {
           <option value="Ascendant">Ascendant</option>
           <option value="Descendant">Descendant</option>
         </select>
-        <button className="button" onClick={() => onSearch(search, orderBy)}>
-          <span>Search</span>
-        </button>
-      </div>
-      <div className="filterDiv">
         <label htmlFor="diets">Filter By Diets</label>
         <select name="diets" className="input" onChange={onFilterSelect}>
-          {filter.map((d) => (
-            <option value={`${d}`}>{d}</option>
+          {diets.map((d, i) => (
+            <option key={i} value={`${d}`}>
+              {d}
+            </option>
           ))}
         </select>
-        <button className="button" onClick={() => filterRecipes(useFilter)}>
-          <span>Filter</span>
-        </button>
       </div>
     </div>
   );
