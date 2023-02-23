@@ -1,0 +1,127 @@
+.detail {
+  display: block;
+  margin: auto;
+  margin-top: 12vh;
+  width: 100vw;
+  height: 100vh;
+}
+
+.detail span {
+  margin: 1vh;
+}
+
+.detailContainer {
+  display: inline-block;
+  width: 90vw;
+  height: 100vh;
+  font-family: "raleway";
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+}
+
+.recipeContainer {
+  float: left;
+  width: 60%;
+  padding-left: 3vw;
+}
+
+.recipeContainer .characteristics {
+  display: inline-block;
+  width: 100%;
+}
+
+.recipeContainer .characteristics .dietsMap {
+  float: left;
+  width: 50%;
+}
+
+.recipeContainer .characteristics .dishMap {
+  float: right;
+  width: 50%;
+}
+
+.recipeContainer h1 {
+  margin-top: 3vh;
+}
+
+.recipeContainer h4 {
+  margin: .8vh auto;
+  padding: 1vw auto;
+}
+
+.recipeContainer .summary {
+  font-style: italic;
+}
+
+.recipeContainer hr {
+  width: 75%;
+  margin: 2vh auto;
+}
+
+.recipeContainer span {
+  font-size: .9em;
+}
+
+.recipeContainer p {
+  font-size: .9em;
+  margin: .75vh auto;
+  padding: auto 2vw;
+}
+
+.detail .button {
+  justify-content: center;
+  display: block;
+  border-radius: 4px;
+  background-color: #967c52;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px;
+  width: auto;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 3vh auto;
+}
+
+.detail .button:hover {
+  box-shadow: inset 0 0 10px 0 #fffaeb;
+}
+
+.detail .button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.detail .button span:after {
+  content: " ↑";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+.detail .button:hover span {
+  padding-right: 15px;
+}
+
+.detail .button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.detailContainer .imgContainer {
+  float: right;
+  height: 100vh;
+  width: 35%;
+  overflow: hidden;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.detailContainer .imgContainer .recipe {
+  height: 100vh;
+  width: auto;
+  border-radius: 0px 20px 20px 0px;
+}

@@ -35,9 +35,7 @@ export default function Renderer(props) {
 
   let cardsContainer = (
     <div>
-      {/* {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />} */}
-      <DailyRecipes dailyRecipes={dailyRecipes} />
-      <hr />
+      {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />}
       <Recipes recipes={currentRecipe} />
       <Paginate
         recipesPerPage={recipesPerPage}

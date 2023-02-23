@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "./detail.modules.css";
 
 export default function Detail() {
   const [recipe, setRecipe] = useState({
@@ -32,40 +33,69 @@ export default function Detail() {
     return navigate("/home");
   }
 
+  let formattedInstructions = recipe.instructions.split(".");
+
+  console.log(formattedInstructions);
+
   let summary;
 
   if (Boolean(Number(recipeId))) {
-    summary = <h4 dangerouslySetInnerHTML={{ __html: recipe.summary }}></h4>;
+    summary = (
+      <h4
+        className="summary"
+        dangerouslySetInnerHTML={{ __html: recipe.summary }}
+      ></h4>
+    );
   } else {
     summary = <h4 className="summary">{recipe.summary}</h4>;
   }
 
   return (
-    <div>
-      <button className="closeButton" onClick={() => goHome()}>
-        Back to Recipes
+    <div className="detail">
+      <div className="detailContainer">
+        <div className="recipeContainer">
+          <div>
+            <h1 className="title">{recipe.title}</h1>
+            {summary}
+          </div>
+          <hr />
+          {formattedInstructions.map((e) => (
+            <p className="recipeInstructions">
+              {e}
+              <br />
+            </p>
+          ))}
+          <hr />
+          <div className="characteristics">
+            <div className="dietsMap">
+              <h4>Diets</h4>
+              {recipe.diets.map((d) => (
+                <span>
+                  {d}
+                  <br />
+                </span>
+              ))}
+            </div>
+            <div className="dishMap">
+              <h4>Type of Dish</h4>
+              {recipe.dishTypes.map((d) => (
+                <span>
+                  {d}
+                  <br />
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="imgContainer">
+          <img className="recipe" src={recipe.image} alt={recipe.title} />
+          <h3 className="healthScore">Health Score: {recipe.healthScore}</h3>
+        </div>
+      </div>
+      <br />
+      <button className="button" onClick={() => goHome()}>
+        <span>Back to Recipes</span>
       </button>
-      <div>
-        <h1 className="title">{recipe.title}</h1>
-        <>
-          {recipe.diets.map((d) => (
-            <span>{d}</span>
-          ))}
-        </>
-        <hr />
-        <>
-          {recipe.dishTypes.map((d) => (
-            <span>{d}</span>
-          ))}
-        </>
-        <hr />
-      </div>
-      {summary}
-      <p>{recipe.instructions}</p>
-      <div className="imgContainer">
-        <img src={recipe.image} alt={recipe.title} />
-        <h3>Health Score: {recipe.healthScore}</h3>
-      </div>
     </div>
   );
 }

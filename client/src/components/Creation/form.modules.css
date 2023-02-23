@@ -126,7 +126,7 @@ input::placeholder {
   border-right: 1px solid rgba(112, 112, 67, 0.5);
 }
 
-.imgContainer {
+.formContainer .imgContainer {
   text-align: center;
   float: right;
   height: auto;
@@ -140,7 +140,7 @@ input::placeholder {
   margin-top: 5%;
 }
 
-.imgContainer img {
+.formContainer .imgContainer img {
   box-shadow: 5px 5px 10px rgba(150, 124, 82, 0.5);
   padding: 2%;
   height: auto;
@@ -187,7 +187,7 @@ input::placeholder {
     text-align: center;
   }
 
-  .imgContainer {
+  .formContainer .imgContainer {
     float: none;
     width: auto;
   }
