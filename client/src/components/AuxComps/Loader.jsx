@@ -1,11 +1,11 @@
 export default function Loader() {
-  // return <span className="loader"></span>;
+  // return <span classNameName="loader"></span>;
   return (
-    <div class="loader">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+    <div className="loader">
+      <div className="box"></div>
+      <div className="box"></div>
+      <div className="box"></div>
+      <div className="box"></div>
     </div>
   );
 }
