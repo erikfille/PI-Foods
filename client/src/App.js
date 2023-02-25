@@ -34,9 +34,9 @@ function App() {
         let dailyMeals = [];
 
         let breakfast = data.find((r) => r.dishTypes.includes("Breakfast"));
-        let lunch = data.find((r) => r.dishTypes.includes("Lunch"));
-        let brunch = data.find((r) => r.dishTypes.includes("Brunch"));
-        let dinner = data.find((r) => r.dishTypes.includes("Dinner"));
+        let lunch = data.find((r) => r.dishTypes.includes("Lunch") && r !== breakfast);
+        let brunch = data.find((r) => r.dishTypes.includes("Brunch") && r !== breakfast && r !== lunch);
+        let dinner = data.find((r) => r.dishTypes.includes("Dinner") && r !== breakfast && r !== lunch && r !== brunch);
 
         dailyMeals.push(breakfast, lunch, brunch, dinner);
 
