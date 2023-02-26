@@ -37,9 +37,9 @@ recipeRouter.get("/", async (req, res) => {
   try {
     const { name } = req.query;
 
-    let apiRecipes=[]
+    // let apiRecipes=[]
     // Consulta la API
-    // let apiRecipes = await getAPIRecipes(name);
+    let apiRecipes = await getAPIRecipes(name);
 
     // Consulta la DB
     let dbRecipes = await getDBRecipes(name);
@@ -101,7 +101,7 @@ recipeRouter.post("/", async (req, res) => {
       await createdRecipe.addDishTypes(await attIdSearch(dishArr, "dishId"));
     } else throw Error("La receta ya existe en la base de datos");
 
-    res.status(201).send(`La receta ${title} se ha creado correctamente`);
+    res.status(201).json({ res: `La receta ${title} se ha creado correctamente`});
   } catch (error) {
     res.status(400).send(error.message);
   }

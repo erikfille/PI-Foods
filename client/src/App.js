@@ -34,9 +34,21 @@ function App() {
         let dailyMeals = [];
 
         let breakfast = data.find((r) => r.dishTypes.includes("Breakfast"));
-        let lunch = data.find((r) => r.dishTypes.includes("Lunch") && r !== breakfast);
-        let brunch = data.find((r) => r.dishTypes.includes("Brunch") && r !== breakfast && r !== lunch);
-        let dinner = data.find((r) => r.dishTypes.includes("Dinner") && r !== breakfast && r !== lunch && r !== brunch);
+        let lunch =
+          data.find((r) => r.dishTypes.includes("Lunch") && r !== breakfast);
+        let brunch =
+          data.find(
+            (r) =>
+              r.dishTypes.includes("Brunch") && r !== breakfast && r !== lunch
+          );
+        let dinner =
+          data.find(
+            (r) =>
+              r.dishTypes.includes("Dinner") &&
+              r !== breakfast &&
+              r !== lunch &&
+              r !== brunch
+          );
 
         dailyMeals.push(breakfast, lunch, brunch, dinner);
 
@@ -74,11 +86,12 @@ function App() {
       },
       body: JSON.stringify(userData),
     });
+    let data = await response.json();
     setLoading(false);
-    return window.alert(response);
+    return window.alert(data.res);
   }
 
-  async function onSearch(name, order) {
+  async function onSearch(name) {
     setLoading(true);
     await fetch(`http://localhost:3001/recipes?name=${name}`)
       .then((response) => response.json())
@@ -111,9 +124,6 @@ function App() {
         sortHealthScore(a, b, order.order)
       );
     }
-    console.log("orderedRecipes: ", orderedRecipes);
-    console.log("orderedDailyRecipes: ", orderedDailyRecipes);
-
     if (orderedRecipes.length) dispatch(orderRecipes(orderedRecipes));
     if (orderedDailyRecipes.length)
       dispatch(orderDailyRecipes(orderedDailyRecipes));
