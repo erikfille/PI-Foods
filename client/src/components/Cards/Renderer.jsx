@@ -41,23 +41,22 @@ export default function Renderer(props) {
         recipesPerPage={recipesPerPage}
         allRecipes={recipes.length}
         paginator={paginator}
+        currentPage={currentPage}
       />
     </div>
   );
 
   return (
     <div className="rendererContainer">
-      <div className="searchContainer">
-        <SearchBar
-          diets={diets}
-          onSearch={onSearch}
-          setCurrentPage={setCurrentPage}
-          recipes={recipes}
-          dailyRecipes={dailyRecipes}
-          orderCards={orderCards}
-          filterRecipes={filterRecipes}
-        />
-      </div>
+      <SearchBar
+        diets={diets}
+        onSearch={onSearch}
+        setCurrentPage={setCurrentPage}
+        recipes={recipes}
+        dailyRecipes={dailyRecipes}
+        orderCards={orderCards}
+        filterRecipes={filterRecipes}
+      />
       <br />
       {loading ? <Loader /> : cardsContainer}
       <button className="roundButton" onClick={() => goToRecipeCreator()}>

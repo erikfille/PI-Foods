@@ -14,7 +14,7 @@ async function getAPIRecipes(name) {
   );
 
   let recipes = responseAPI.data.results.map((recipe) => {
-    const diets = recipe.diets.length > 1 ? recipe.diets.map(d => `${d[0].toUpperCase()}${d.substring(1)}`) : ["-"]
+    const diets = recipe.diets.length > 1 ? recipe.diets.map(d => `${d[0].toUpperCase()}${d.substring(1)}`) : ["Sin Especificar"]
     let newRecipe = {
       id: recipe.id,
       title: recipe.title,
@@ -194,7 +194,7 @@ async function getAPIRecipeById(id) {
     summary: recipe.summary,
     instructions: instructions,
     image: recipe.image,
-    diets: recipe.diets || ["-"],
+    diets: recipe.diets || ["Sin Especificar"],
     dishTypes: recipe.dishTypes,
   };
 }

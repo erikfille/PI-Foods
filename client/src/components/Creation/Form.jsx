@@ -23,6 +23,7 @@ export default function Form(props) {
     instructions: "",
     diets: "",
     dishTypes: "",
+    state: true
   });
 
   function handleInputChange(e) {
@@ -60,9 +61,9 @@ export default function Form(props) {
               name="title"
               value={inputs.title}
               onChange={handleInputChange}
-              className={errors.title && "danger"}
+              className={errors.title ? "danger" : "formInput"}
             />
-            {errors.title && <span>{errors.title}</span>}
+            {errors.title && <span className="errorSpan">{errors.title}<br/></span>}
             <label htmlFor="healthScore">Health Score: </label>
             <br />
             <input
@@ -70,9 +71,9 @@ export default function Form(props) {
               name="healthScore"
               value={inputs.healthScore}
               onChange={handleInputChange}
-              className={errors.healthScore && "danger"}
+              className={errors.healthScore ? "danger" : "formInput"}
             />
-            {errors.healthScore && <span>{errors.healthScore}</span>}
+            {errors.healthScore && <span className="errorSpan">{errors.healthScore}<br/></span>}
             <label htmlFor="summary">Summary: </label>
             <br />
             <textarea
@@ -80,9 +81,9 @@ export default function Form(props) {
               name="summary"
               value={inputs.summary}
               onChange={handleInputChange}
-              className={errors.summary && "danger"}
+              className={errors.summary ? "danger" : "formInput"}
             />
-            {errors.summary && <span>{errors.summary}</span>}
+            {errors.summary && <span className={(inputs.summary.length < 1 || inputs.summary.length >= 140) ? "errorSpan" : "charactersLeft"}>{errors.summary}<br/></span>}
             <label htmlFor="instructions">Instructions: </label>
             <br />
             <input
@@ -90,9 +91,9 @@ export default function Form(props) {
               name="instructions"
               value={inputs.instructions}
               onChange={handleInputChange}
-              className={errors.instructions && "danger"}
+              className={errors.instructions ? "danger" : "formInput"}
             />
-            {errors.instructions && <span>{errors.instructions}</span>}
+            {errors.instructions && <span className="errorSpan">{errors.instructions}<br/></span>}
             <label htmlFor="diets">Diets: </label>
             <br />
             <input
@@ -100,9 +101,9 @@ export default function Form(props) {
               name="diets"
               value={inputs.diets}
               onChange={handleInputChange}
-              className={errors.diets && "danger"}
+              className={errors.diets ? "danger" : "formInput"}
             />
-            {errors.diets && <span>{errors.diets}</span>}
+            {errors.diets && <span className="errorSpan">{errors.diets}<br/></span>}
             <label htmlFor="dishTypes">Dish Type: </label>
             <br />
             <input
@@ -110,9 +111,9 @@ export default function Form(props) {
               name="dishTypes"
               value={inputs.dishTypes}
               onChange={handleInputChange}
-              className={errors.dishTypes && "danger"}
+              className={errors.dishTypes ? "danger" : "formInput"}
             />
-            {errors.dishTypes && <span>{errors.dishTypes}</span>}
+            {errors.dishTypes && <span className="errorSpan">{errors.dishTypes}<br/></span>}
           </div>
           <div className="imgContainer">
             <div className="widgetButton">
@@ -124,9 +125,15 @@ export default function Form(props) {
                 </div>
               )}
             </div>
-            <button className="submitButton">
-              <span>Submit Recipe</span>
-            </button>
+            {errors.state ? (
+              <button className="disabledButton" disabled>
+                <span>Submit Recipe</span>
+              </button>
+            ) : (
+              <button className="submitButton">
+                <span>Submit Recipe</span>
+              </button>
+            )}
           </div>
           <div className="floatClear"></div>
         </form>

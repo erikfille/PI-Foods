@@ -1,0 +1,42 @@
+.aboutContainer {
+  display: block;
+  position: center;
+  margin: auto;
+  margin-top: 12vh;
+  width: 80vw;
+  height: 100vh;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleContainer h1 {
+  float: left;
+  margin: 2vh 3vw;
+}
+
+.profilePic {
+  float: right;
+  border-radius: 20px;
+  width: 200px;
+  height: auto;
+}
+
+.profilePic img {
+  border-radius: 20px;
+  width: 200px;
+  height: auto;
+}
+
+.divisor {
+  opacity: 0.5;
+  color: rgba(150, 124, 82, 0.5);
+  box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+}
+
+.aboutMe {
+  width: 75vw;
+}

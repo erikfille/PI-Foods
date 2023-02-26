@@ -3,7 +3,8 @@
   margin: auto;
   margin-top: 12vh;
   width: 100vw;
-  height: 100vh;
+  height: auto;
+  z-index: 9;
 }
 
 .detail span {
@@ -12,11 +13,11 @@
 
 .detailContainer {
   display: inline-block;
-  width: 90vw;
+  width: 95vw;
   height: 100vh;
   font-family: "raleway";
   border-radius: 20px;
-  box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+  /* box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5); */
 }
 
 .recipeContainer {
@@ -45,7 +46,7 @@
 }
 
 .recipeContainer h4 {
-  margin: .8vh auto;
+  margin: 0.8vh auto;
   padding: 1vw auto;
 }
 
@@ -53,18 +54,37 @@
   font-style: italic;
 }
 
-.recipeContainer hr {
-  width: 75%;
-  margin: 2vh auto;
+.recipeContainer .tinySummary {
+  font-size: 0.8em;
 }
 
-.recipeContainer span {
-  font-size: .9em;
+.recipeContainer .tinyInstructions {
+  font-size: 0.8em;
+}
+
+.recipeContainer .topHr {
+  width: 75%;
+  margin: 2vh auto;
+  box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+}
+
+.recipeContainer .botHr {
+  width: 60%;
+  margin: 2vh auto;
+  box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+}
+
+.recipeContainer .span {
+  font-size: 0.9em;
+}
+
+.recipeContainer .tinySpan {
+  font-size: 0.8em;
 }
 
 .recipeContainer p {
-  font-size: .9em;
-  margin: .75vh auto;
+  font-size: 0.9em;
+  margin: 0.75vh auto;
   padding: auto 2vw;
 }
 
@@ -80,7 +100,8 @@
   width: auto;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 3vh auto;
+  margin: 4vh auto;
+  margin-bottom: 2vh;
 }
 
 .detail .button:hover {
@@ -114,14 +135,102 @@
 
 .detailContainer .imgContainer {
   float: right;
+  position: relative;
   height: 100vh;
   width: 35%;
   overflow: hidden;
   border-radius: 0px 20px 20px 0px;
+  z-index: 99;
 }
 
 .detailContainer .imgContainer .recipe {
   height: 100vh;
   width: auto;
   border-radius: 0px 20px 20px 0px;
+}
+
+.detailContainer .imgContainer .healthScore {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #f0f0d8;
+  box-shadow: inset 10px 5px 40px rgba(150, 124, 82, 0.75),
+    0px 0px 20px rgba(150, 124, 82, 0.75);
+  padding: 2em;
+  color: #707043;
+  font-size: 1em;
+  top: 0;
+  right: 5%;
+  text-shadow: 0px 0px 5px rgba(150, 124, 82, 1);
+  z-index: 99999;
+}
+
+@media screen and (max-width: 500px) {
+  .detailContainer {
+    display: block;
+    height: auto;
+  }
+
+  .recipeContainer {
+    float: none;
+    width: 90%;
+    margin: auto;
+    padding: 0%;
+  }
+
+  .detailContainer .imgContainer {
+    float: none;
+    height: auto;
+    width: 90%;
+    overflow: hidden;
+    border-radius: 0px 0px 20px 20px;
+    margin: auto;
+    margin-top: 1vh;
+    z-index: 99999;
+  }
+
+  .detailContainer .imgContainer .recipe {
+    height: auto;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+  }
+
+  .recipeContainer h1 {
+    margin-top: 3vh;
+    font-size: 1.4em;
+  }
+
+  .recipeContainer .summary {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  .recipeContainer .tinySummary {
+    font-size: 0.7em;
+  }
+
+  .recipeContainer .tinyInstructions {
+    font-size: 0.7em;
+  }
+
+  .recipeContainer .span {
+    font-size: 0.8em;
+  }
+
+  .recipeContainer .tinySpan {
+    font-size: 0.7em;
+  }
+
+  .recipeContainer p {
+    font-size: 0.8em;
+    margin: 0.75vh auto;
+    padding: auto 2vw;
+  }
+
+  .detail .button {
+    margin: 2vh auto;
+  }
+
+  .detailContainer .imgContainer .healthScore {
+    scale: 75%;
+  }
 }

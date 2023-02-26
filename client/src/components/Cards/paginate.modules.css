@@ -1,0 +1,35 @@
+.paginateDiv {
+  background-color: none;
+  margin-bottom: 3vh;
+}
+
+.pageButton {
+  appearance: none;
+  background: none;
+  border: none;
+  border-width: 1px;
+  border-color: rgba(112, 112, 67);
+  margin: 0.3vw;
+  transition: all 0.75s;
+  font-size: 1em;
+}
+
+.pageButton:hover {
+  font-size: .9em;
+  font-weight: 900;
+  scale: 125%;
+  transition: all 0.75s;
+  color: #707043;
+}
+
+.pageButtonActive {
+  appearance: none;
+  background: none;
+  border: none;
+  border-width: 1px;
+  border-color: rgba(112, 112, 67);
+  margin: 0.3vw;
+  transition: all 0.75s;
+  font-size: 1em;
+  font-weight: 900;
+}

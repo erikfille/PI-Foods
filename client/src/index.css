@@ -7,4 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   display: block;
+  background-color: #fffaeb;
+  background-attachment: fixed;
 }

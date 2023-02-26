@@ -1,29 +1,32 @@
 import profilePic from "../../assets/img/profilePic.jpg";
+import "./about.modules.css";
 
 export default function About(props) {
   return (
     <div className="aboutContainer">
-      <div>
-        <img src={profilePic} alt="Foto de Erik" width="200px" height="auto" />
+      <div className="titleContainer">
+        <div className="profilePic">
+          <img src={profilePic} alt="Foto de Erik" />
+        </div>
         <h1>
           Creado por <br />
           Erik Filleaudeau
         </h1>
       </div>
-      <hr />
-      <div>
+      <hr className="divisor" />
+      <div className="aboutMe">
         <p>
-          <b>Diseñador Gráfico</b> y <b>Editor de Video</b> con base en la
-          ciudad de La Plata, con <b> amplia experiencia</b> y{" "}
-          <b> conocimientos</b> en dichas áreas.
+          Hi! My name is Erik, and I'm <b>your future Fullstack Dev</b>.{" "}
         </p>
         <p>
-          Son estos conocimientos y experiencia, mas el constante aprendizaje y
-          ajuste de <b>habilidades blandas</b>, y una gran capacidad para la{" "}
-          <b>organización</b>, <b>comunicación</b> y <b>aprendizaje rápido</b> a
-          través de la investigación, los que me han permitido alcanzar el rango
-          de <b>director creativo</b> en proyectos con{" "}
-          <b>equipos de trabajo multidisciplinarios</b>.
+          I'm a <b>highly motivated learner</b>, with <b>great comprehension</b>{" "}
+          and <b>communication skills</b> and <b>team leading experience</b> as <b>Project Manager</b> &{" "}
+          <b>Creative Director</b>.
+        </p>{" "}
+        <p>
+          I'm really good at <b>troubleshooting</b> and{" "}
+          <b>resource optimization</b> through both <b>logical</b> and{" "}
+          <b>creative thinking</b>.
         </p>
       </div>
     </div>

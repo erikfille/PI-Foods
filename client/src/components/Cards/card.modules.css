@@ -8,6 +8,7 @@
   border-radius: 20px;
   font-family: "raleway";
   margin: 20px;
+  transition: all 0.75s;
 }
 
 .cardContainer:hover {
@@ -72,23 +73,22 @@
   }
 
   .cardContainer h1 {
-    font-size: .75rem;
+    font-size: 0.75rem;
     font-weight: 800;
     padding: 1vw;
     margin: 0px;
   }
 
   .infoContainer .mapped {
-    font-size: .55em;
+    font-size: 0.55em;
   }
 
   .infoContainer h4 {
     margin: 3%;
-    font-size: .6em;
+    font-size: 0.6em;
   }
 
   .cardImgContainer {
     border-radius: 0px 15px 15px 0px;
   }
-  
 }

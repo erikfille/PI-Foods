@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../AuxComps/Loader";
 import "./detail.modules.css";
 
 export default function Detail() {
@@ -35,22 +36,20 @@ export default function Detail() {
 
   let formattedInstructions = recipe.instructions.split(".");
 
-  console.log(formattedInstructions);
-
   let summary;
 
   if (Boolean(Number(recipeId))) {
     summary = (
       <h4
-        className="summary"
+        className={recipe.summary.length > 140 ? "tinySummary" : "summary"}
         dangerouslySetInnerHTML={{ __html: recipe.summary }}
       ></h4>
     );
   } else {
-    summary = <h4 className="summary">{recipe.summary}</h4>;
+    summary = <h4 className={recipe.summary.length > 140 ? "tinySummary" : "summary"}>{recipe.summary}</h4>;
   }
 
-  return (
+  return recipe.id ? (
     <div className="detail">
       <div className="detailContainer">
         <div className="recipeContainer">
@@ -58,19 +57,19 @@ export default function Detail() {
             <h1 className="title">{recipe.title}</h1>
             {summary}
           </div>
-          <hr />
+          <hr className="topHr" />
           {formattedInstructions.map((e) => (
-            <p className="recipeInstructions">
+            <p className={recipe.instructions.length > 140 ? "tinyInstructions" : "instructions"}>
               {e}
               <br />
             </p>
           ))}
-          <hr />
+          <hr className="botHr" />
           <div className="characteristics">
             <div className="dietsMap">
               <h4>Diets</h4>
               {recipe.diets.map((d) => (
-                <span>
+                <span className={recipe.summary.length > 140 ? "tinySpan" : "span"}>
                   {d}
                   <br />
                 </span>
@@ -79,7 +78,7 @@ export default function Detail() {
             <div className="dishMap">
               <h4>Type of Dish</h4>
               {recipe.dishTypes.map((d) => (
-                <span>
+                <span className={recipe.summary.length > 140 ? "tinySpan" : "span"}>
                   {d}
                   <br />
                 </span>
@@ -89,7 +88,7 @@ export default function Detail() {
         </div>
         <div className="imgContainer">
           <img className="recipe" src={recipe.image} alt={recipe.title} />
-          <h3 className="healthScore">Health Score: {recipe.healthScore}</h3>
+          <h3 className="healthScore">Health <br/> Score <br/> {recipe.healthScore}%</h3>
         </div>
       </div>
       <br />
@@ -97,5 +96,7 @@ export default function Detail() {
         <span>Back to Recipes</span>
       </button>
     </div>
+  ) : (
+    <Loader />
   );
 }

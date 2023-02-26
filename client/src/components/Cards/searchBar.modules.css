@@ -1,7 +1,3 @@
-.searchContainer{
-  z-index: 999;
-}
-
 .searchDiv {
   font-weight: 700;
 }
@@ -78,4 +74,10 @@ input::placeholder {
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .searchContainer {
+    scale: 80%;
+  }
 }

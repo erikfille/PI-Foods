@@ -1,18 +1,27 @@
 import React from "react";
+import "./paginate.modules.css";
 
-export default function Paginate({ recipesPerPage, allRecipes, paginator }) {
+export default function Paginate({ recipesPerPage, allRecipes, paginator, currentPage }) {
   const pageNumbers = [];
-  for (let i = 1; i < Math.ceil(allRecipes / recipesPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(allRecipes / recipesPerPage); i++) {
     pageNumbers.push(i);
   }
 
+  console.log(currentPage)
+
   return pageNumbers.length ? (
     <div className="paginateDiv">
-      <button onClick={() => paginator(-1)}>←</button>
+      <button className="pageButton" onClick={() => paginator(-1)}>
+        ←
+      </button>
       {pageNumbers.map((number) => (
-        <button onClick={() => paginator(number, "nro")}>{number}</button>
+        <button className={currentPage === number ? "pageButtonActive" : "pageButton"} onClick={() => paginator(number, "nro")}>
+          {number}
+        </button>
       ))}
-      <button onClick={() => paginator(1)}>→</button>
+      <button className="pageButton" onClick={() => paginator(1)}>
+        →
+      </button>
     </div>
   ) : (
     ""
