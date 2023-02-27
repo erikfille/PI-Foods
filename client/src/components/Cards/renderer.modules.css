@@ -1,25 +1,29 @@
 .rendererContainer {
   margin-top: 10vh;
+  left: 0;
   width: auto;
   height: auto;
+  display: flex;
+  margin: 0 auto;
 }
 
 .searchContainer {
-  display: flex;
   position: fixed;
+  left: 0;
   align-items: center;
   justify-content: space-around;
   background-color: #fffaeb;
   padding-top: 0.5vh;
   width: 100vw;
   align-items: center;
-  margin-top: 0vh;
+  margin: auto;
+  margin-top: 10vh;
   margin-bottom: 2vh;
   z-index: 999;
 }
 
 .recipesContainer {
-  margin-top: 6%;
+  margin-top: 25vh;
 }
 
 .roundButton {
@@ -53,14 +57,25 @@
   .recipesContainer {
     width: 100%;
     margin: auto;
-    margin-top: 15%;
+    margin-top: 25vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .searchContainer {
+    margin-top: 8vh;
   }
 }
 
 @media screen and (max-width: 500px) {
   .recipesContainer {
-    margin-top: 25%;
+    margin-top: 25vh;
   }
+
+  .recipesContainer .recipeTitle {
+    font-size: 1.4em;
+  }
+
   .roundButton {
     bottom: 7vh;
     right: 7vh;

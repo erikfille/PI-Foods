@@ -9,7 +9,7 @@ export default function About(props) {
           <img src={profilePic} alt="Foto de Erik" />
         </div>
         <h1>
-          Creado por <br />
+          Created by <br />
           Erik Filleaudeau
         </h1>
       </div>

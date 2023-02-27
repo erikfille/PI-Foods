@@ -1,53 +1,14 @@
-import { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
 import "./searchBar.modules.css";
 
 export default function SearchBar(props) {
-  const { onSearch, diets, filterRecipes, orderCards } = props;
-
-  const location = useLocation();
-
-  const [search, setSearch] = useState("");
-
-  const [orderBy, setOrderBy] = useState({
-    by: "Alphabetical",
-    order: "Ascendant",
-  });
-
-  const [filterByDiet, setFilterByDiet] = useState("All");
-
-  let [searchParams, setSearchParams] = useSearchParams({});
-
-  useEffect(() => {
-    orderCards(orderBy);
-  }, [orderBy]);
-
-  useEffect(() => {
-    filterRecipes(filterByDiet);
-  }, [filterByDiet]);
-
-  // Modifica la query segun el estado.
-  useEffect(() => {
-    let by = orderBy.by;
-    let order = orderBy.order;
-    setSearchParams({ filterByDiet, by, order });
-  }, [orderBy, filterByDiet]);
-
-  function handleInputChange(e) {
-    setSearch(e.target.value);
-  }
-
-  function onFilterSelect(e) {
-    e.preventDefault();
-    if (e.target.value !== filterByDiet) {
-      setFilterByDiet(e.target.value);
-    }
-  }
-
-  function onSelect(e) {
-    e.preventDefault();
-    setOrderBy({ ...orderBy, [e.target.name]: e.target.value });
-  }
+  const {
+    onSearch,
+    diets,
+    handleInputChange,
+    onFilterSelect,
+    onSelect,
+    search,
+  } = props;
 
   return (
     <div className="searchContainer">

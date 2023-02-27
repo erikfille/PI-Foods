@@ -5,9 +5,9 @@ export default function DailyRecipes(props) {
   return (
     <div className="recipesContainer">
       <h1>Daily Meals</h1>
-      {props.dailyRecipes.map((r) => (
+      {props.dailyRecipes.map((r, idx) => (
         <Card
-          key={r.id + `${Math.random() * 100}`}
+          key={r.id + idx}
           id={r.id}
           title={r.title}
           healthScore={r.healthScore}

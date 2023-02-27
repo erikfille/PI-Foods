@@ -27,7 +27,7 @@
 
 .profilePic img {
   border-radius: 20px;
-  width: 200px;
+  width: 175px;
   height: auto;
 }
 
@@ -35,8 +35,11 @@
   opacity: 0.5;
   color: rgba(150, 124, 82, 0.5);
   box-shadow: 5px 5px 20px rgba(150, 124, 82, 0.5);
+  width: 60vw;
+  margin: 3vh auto;
 }
 
 .aboutMe {
-  width: 75vw;
+  width: 60vw;
+  margin: auto;
 }

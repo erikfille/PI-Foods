@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DailyRecipes from "./DailyRecipes";
 import Recipes from "./Recipes";
 import Paginate from "./Paginate";
@@ -15,23 +14,15 @@ export default function Renderer(props) {
     loading,
     onSearch,
     diets,
-    filterRecipes,
-    orderCards,
+    handleInputChange,
+    onFilterSelect,
+    onSelect,
+    search,
+    currentRecipe,
+    recipesPerPage,
+    paginator,
+    currentPage,
   } = props;
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const recipesPerPage = 9; // este estado local setea cuantas cartas entran por pagina
-  const indexOfLastRecipe = currentPage * recipesPerPage;
-  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipe = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
-  function paginator(n, str) {
-    if (str) {
-      setCurrentPage(n);
-    } else {
-      setCurrentPage(currentPage + n);
-    }
-  }
 
   let cardsContainer = (
     <div>
@@ -51,11 +42,12 @@ export default function Renderer(props) {
       <SearchBar
         diets={diets}
         onSearch={onSearch}
-        setCurrentPage={setCurrentPage}
         recipes={recipes}
         dailyRecipes={dailyRecipes}
-        orderCards={orderCards}
-        filterRecipes={filterRecipes}
+        handleInputChange={handleInputChange}
+        onFilterSelect={onFilterSelect}
+        onSelect={onSelect}
+        search={search}
       />
       <br />
       {loading ? <Loader /> : cardsContainer}

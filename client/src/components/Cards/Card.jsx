@@ -14,10 +14,10 @@ export default function Card(props) {
         <hr className="botHr" />
         <h4>Diets</h4>
         {diets.map((d) => (
-          <>
-            <span className="mapped">{d}</span>
+          <span className="mapped">
+            {d}
             <br />
-          </>
+          </span>
         ))}
       </div>
       <div className="cardImgContainer">
@@ -36,10 +36,10 @@ export default function Card(props) {
         <hr className="botHr" />
         <h4>Dish Type</h4>
         {dishTypes.map((d) => (
-          <>
-            <span className="mapped">{d}</span>
+          <span key={d} className="mapped">
+            {d}
             <br />
-          </>
+          </span>
         ))}
       </div>
       <div className="cardImgContainer">

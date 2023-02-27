@@ -5,8 +5,8 @@ export default function Recipes(props) {
 
   return (
     <div className="recipesContainer">
-      {recipes.length ? <h1>Recipes for Your Search</h1> : ""}
-      {recipes.map((r) => (
+      {recipes.length ? <h1 className="recipeTitle">Recipes for Your Search</h1> : ""}
+      {recipes.map((r, idx) => (
         <Card
           key={r.id}
           id={r.id}

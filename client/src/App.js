@@ -1,6 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllRecipes,
@@ -26,6 +32,52 @@ function App() {
 
   const [loading, setLoading] = useState(false);
   const [diets, setDiets] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [orderBy, setOrderBy] = useState({
+    by: "Alphabetical",
+    order: "Ascendant",
+  });
+  const [filterByDiet, setFilterByDiet] = useState("All");
+
+  const recipesPerPage = 9; // este estado local setea cuantas cartas entran por pagina
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipe = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
+  useEffect(() => {
+    let search = searchParams.get("search");
+    let page = searchParams.get("page");
+    let by = searchParams.get("by");
+    let order = searchParams.get("order");
+    let filter = searchParams.get("filter");
+
+    if (search) {
+      setSearch(search)
+      onSearch(search);
+    }
+    if (page) {
+      paginator(page, "num");
+    }
+    orderCards({ by, order });
+    filterRecipes(filter);
+  }, []);
+
+  // Modifica la query segun el estado.
+  useEffect(() => {
+    let by = orderBy.by || "Alphabetical";
+    let order = orderBy.order || "Ascendant";
+    let searchParam = search || "";
+    let filter = filterByDiet || "All";
+    setSearchParams({
+      search: searchParam,
+      page: currentPage,
+      filter,
+      by,
+      order,
+    });
+  }, [search, currentPage, orderBy, filterByDiet]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes/all`)
@@ -35,12 +87,13 @@ function App() {
 
         let breakfast = data.find((r) => r.dishTypes.includes("Breakfast"));
         let lunch =
-          data.find((r) => r.dishTypes.includes("Lunch") && r !== breakfast);
+          data.find((r) => r.dishTypes.includes("Lunch") && r !== breakfast) ||
+          data.find((r) => r.dishTypes.includes("Lunch"));
         let brunch =
           data.find(
             (r) =>
               r.dishTypes.includes("Brunch") && r !== breakfast && r !== lunch
-          );
+          ) || data.find((r) => r.dishTypes.includes("Brunch"));
         let dinner =
           data.find(
             (r) =>
@@ -48,7 +101,7 @@ function App() {
               r !== breakfast &&
               r !== lunch &&
               r !== brunch
-          );
+          ) || data.find((r) => r.dishTypes.includes("Dinner"));
 
         dailyMeals.push(breakfast, lunch, brunch, dinner);
 
@@ -72,6 +125,32 @@ function App() {
       setDiets([]);
     };
   }, []);
+
+  function paginator(n, str) {
+    if (str) {
+      setCurrentPage(n);
+    } else {
+      setCurrentPage(currentPage + n);
+    }
+  }
+
+  function handleInputChange(e) {
+    setSearch(e.target.value);
+  }
+
+  function onFilterSelect(e) {
+    e.preventDefault();
+    if (e.target.value !== filterByDiet) {
+      setFilterByDiet(e.target.value);
+      filterRecipes(e.target.value);
+    }
+  }
+
+  function onSelect(e) {
+    e.preventDefault();
+    setOrderBy({ ...orderBy, [e.target.name]: e.target.value });
+    orderCards({ ...orderBy, [e.target.name]: e.target.value });
+  }
 
   function goToRecipeCreator() {
     return navigate("/createRecipe");
@@ -164,8 +243,14 @@ function App() {
               loading={loading}
               dailyRecipes={dailyRecipes}
               diets={diets}
-              filterRecipes={filterRecipes}
-              orderCards={orderCards}
+              handleInputChange={handleInputChange}
+              onFilterSelect={onFilterSelect}
+              onSelect={onSelect}
+              search={search}
+              currentRecipe={currentRecipe}
+              recipesPerPage={recipesPerPage}
+              paginator={paginator}
+              currentPage={currentPage}
             />
           }
         />
