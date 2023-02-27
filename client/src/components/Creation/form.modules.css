@@ -118,7 +118,6 @@ input::placeholder {
   padding: 8px;
   width: auto;
   transition: all 0.5s;
-  cursor: pointer;
   margin: 10px;
 }
 

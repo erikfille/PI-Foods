@@ -88,7 +88,7 @@ export default function Detail() {
         </div>
         <div className="imgContainer">
           <img className="recipe" src={recipe.image} alt={recipe.title} />
-          <h3 className="healthScore">Health <br/> Score <br/> {recipe.healthScore}%</h3>
+          <h3 className="healthScore">Health <br/> Score <br/> <b>{recipe.healthScore}%</b></h3>
         </div>
       </div>
       <br />

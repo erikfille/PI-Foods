@@ -81,7 +81,7 @@ export default function Form(props) {
               name="summary"
               value={inputs.summary}
               onChange={handleInputChange}
-              className={errors.summary ? "danger" : "formInput"}
+              className={(errors.summary && errors.state) ? "danger" : "formInput"}
             />
             {errors.summary && <span className={(inputs.summary.length < 1 || inputs.summary.length >= 140) ? "errorSpan" : "charactersLeft"}>{errors.summary}<br/></span>}
             <label htmlFor="instructions">Instructions: </label>
