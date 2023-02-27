@@ -54,7 +54,7 @@ function App() {
     let filter = searchParams.get("filter");
 
     if (search) {
-      setSearch(search)
+      setSearch(search);
       onSearch(search);
     }
     if (page) {

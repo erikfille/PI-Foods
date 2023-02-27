@@ -8,13 +8,15 @@ const { API_KEY } = process.env;
 // Limpiar info innecesaria del get de recetas general
 
 async function getAPIRecipes(name) {
-
   const responseAPI = await axios(
     `https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${API_KEY}`
   );
 
   let recipes = responseAPI.data.results.map((recipe) => {
-    const diets = recipe.diets.length > 1 ? recipe.diets.map(d => `${d[0].toUpperCase()}${d.substring(1)}`) : ["Sin Especificar"]
+    const diets =
+      recipe.diets.length > 1
+        ? recipe.diets.map((d) => `${d[0].toUpperCase()}${d.substring(1)}`)
+        : ["Sin Especificar"];
     let newRecipe = {
       id: recipe.id,
       title: recipe.title,
@@ -23,7 +25,9 @@ async function getAPIRecipes(name) {
       instructions: recipe.analyzedInstructions,
       image: recipe.image,
       diets: diets,
-      dishTypes: recipe.dishTypes.map(d => `${d[0].toUpperCase()}${d.substring(1)}`),
+      dishTypes: recipe.dishTypes.map(
+        (d) => `${d[0].toUpperCase()}${d.substring(1)}`
+      ),
     };
 
     let instructions = newRecipe.instructions

@@ -1,13 +1,16 @@
 .landing {
   display: block;
-  background-image: url("../../assets/img/landing.jpg");
+  background-color: rgba(255, 250, 235, 0.5);
+  /* background-image: url("../../assets/img/landing.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #fffaeb;
+  background-color: #fffaeb; */
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .landing h1 {
@@ -18,7 +21,7 @@
 .welcome {
   font-family: "raleway";
   color: #967c52;
-  font-weight:bolder;
+  font-weight: bolder;
   position: center;
   margin-top: 20vh;
   margin-bottom: 2vh;
@@ -47,7 +50,7 @@
 }
 
 .enter:hover {
-    box-shadow: inset 0 0 10px 0 #fffaeb;
+  box-shadow: inset 0 0 10px 0 #fffaeb;
 }
 
 .enter span {
@@ -73,4 +76,15 @@
 .enter:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
 }

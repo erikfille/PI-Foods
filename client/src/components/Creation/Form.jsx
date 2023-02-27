@@ -23,7 +23,7 @@ export default function Form(props) {
     instructions: "",
     diets: "",
     dishTypes: "",
-    state: true
+    state: true,
   });
 
   function handleInputChange(e) {
@@ -39,9 +39,18 @@ export default function Form(props) {
     );
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    createRecipe(inputs);
+    await createRecipe(inputs);
+    setErrors({
+      title: "",
+      healthScore: "",
+      summary: "",
+      instructions: "",
+      diets: "",
+      dishTypes: "",
+      state: true,
+    });
   }
 
   function onUpload(url) {
@@ -63,7 +72,12 @@ export default function Form(props) {
               onChange={handleInputChange}
               className={errors.title ? "danger" : "formInput"}
             />
-            {errors.title && <span className="errorSpan">{errors.title}<br/></span>}
+            {errors.title && (
+              <span className="errorSpan">
+                {errors.title}
+                <br />
+              </span>
+            )}
             <label htmlFor="healthScore">Health Score: </label>
             <br />
             <input
@@ -73,7 +87,12 @@ export default function Form(props) {
               onChange={handleInputChange}
               className={errors.healthScore ? "danger" : "formInput"}
             />
-            {errors.healthScore && <span className="errorSpan">{errors.healthScore}<br/></span>}
+            {errors.healthScore && (
+              <span className="errorSpan">
+                {errors.healthScore}
+                <br />
+              </span>
+            )}
             <label htmlFor="summary">Summary: </label>
             <br />
             <textarea
@@ -81,9 +100,22 @@ export default function Form(props) {
               name="summary"
               value={inputs.summary}
               onChange={handleInputChange}
-              className={(errors.summary && errors.state) ? "danger" : "formInput"}
+              className={
+                errors.summary && errors.state ? "danger" : "formInput"
+              }
             />
-            {errors.summary && <span className={(inputs.summary.length < 1 || inputs.summary.length >= 140) ? "errorSpan" : "charactersLeft"}>{errors.summary}<br/></span>}
+            {errors.summary && (
+              <span
+                className={
+                  inputs.summary.length < 1 || inputs.summary.length >= 140
+                    ? "errorSpan"
+                    : "charactersLeft"
+                }
+              >
+                {errors.summary}
+                <br />
+              </span>
+            )}
             <label htmlFor="instructions">Instructions: </label>
             <br />
             <input
@@ -93,7 +125,12 @@ export default function Form(props) {
               onChange={handleInputChange}
               className={errors.instructions ? "danger" : "formInput"}
             />
-            {errors.instructions && <span className="errorSpan">{errors.instructions}<br/></span>}
+            {errors.instructions && (
+              <span className="errorSpan">
+                {errors.instructions}
+                <br />
+              </span>
+            )}
             <label htmlFor="diets">Diets: </label>
             <br />
             <input
@@ -103,7 +140,12 @@ export default function Form(props) {
               onChange={handleInputChange}
               className={errors.diets ? "danger" : "formInput"}
             />
-            {errors.diets && <span className="errorSpan">{errors.diets}<br/></span>}
+            {errors.diets && (
+              <span className="errorSpan">
+                {errors.diets}
+                <br />
+              </span>
+            )}
             <label htmlFor="dishTypes">Dish Type: </label>
             <br />
             <input
@@ -113,7 +155,12 @@ export default function Form(props) {
               onChange={handleInputChange}
               className={errors.dishTypes ? "danger" : "formInput"}
             />
-            {errors.dishTypes && <span className="errorSpan">{errors.dishTypes}<br/></span>}
+            {errors.dishTypes && (
+              <span className="errorSpan">
+                {errors.dishTypes}
+                <br />
+              </span>
+            )}
           </div>
           <div className="imgContainer">
             <div className="widgetButton">
