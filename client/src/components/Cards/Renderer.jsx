@@ -2,7 +2,7 @@ import DailyRecipes from "./DailyRecipes";
 import Recipes from "./Recipes";
 import Paginate from "./Paginate";
 import SearchBar from "./SearchBar";
-import Loader from "../AuxComps/Loader";
+import Loader from "../Loader/Loader.jsx";
 
 import "./renderer.modules.css";
 
@@ -24,10 +24,15 @@ export default function Renderer(props) {
     currentPage,
   } = props;
 
+  function showRecipes() {
+    if(!recipes.length && !dailyRecipes.length) return <h1 className="errorH1">There are no recipes with that specifications</h1>
+    if(!recipes.length) return <DailyRecipes dailyRecipes={dailyRecipes} />
+    else return <Recipes recipes={currentRecipe} />
+  }
+
   let cardsContainer = (
     <div>
-      {!currentRecipe.length && <DailyRecipes dailyRecipes={dailyRecipes} />}
-      <Recipes recipes={currentRecipe} />
+      {showRecipes()}
       <Paginate
         recipesPerPage={recipesPerPage}
         allRecipes={recipes.length}

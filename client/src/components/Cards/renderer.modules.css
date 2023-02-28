@@ -3,7 +3,7 @@
   left: 0;
   width: auto;
   height: auto;
-  display: flex;
+  display: block;
   margin: 0 auto;
   background-color: #fffaeb;
 }
@@ -52,6 +52,11 @@
   box-shadow: inset 10px 5px 40px rgba(150, 124, 82, 0.75),
     0px 0px 20px rgba(150, 124, 82, 0.5);
   transition: 0.75s;
+}
+
+.errorH1 {
+  margin: auto;
+  margin-top: 14vh;
 }
 
 @media screen and (max-width: 870px) {

@@ -36,10 +36,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [orderBy, setOrderBy] = useState({
-    by: "Alphabetical",
-    order: "Ascendant",
+    by: searchParams.get("by") || "Alphabetical",
+    order: searchParams.get("order") || "Ascendant",
   });
-  const [filterByDiet, setFilterByDiet] = useState("All");
+  const [filterByDiet, setFilterByDiet] = useState(searchParams.get("filter") || "All");
 
   const recipesPerPage = 9; // este estado local setea cuantas cartas entran por pagina
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -60,7 +60,7 @@ function App() {
     if (page) {
       paginator(page, "num");
     }
-    orderCards({ by, order });
+    orderCards({...orderBy, by, order });
     filterRecipes(filter);
   }, []);
 

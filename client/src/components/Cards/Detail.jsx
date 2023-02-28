@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Loader from "../AuxComps/Loader";
+import Loader from "../Loader/Loader";
 import "./detail.modules.css";
 
 export default function Detail() {
