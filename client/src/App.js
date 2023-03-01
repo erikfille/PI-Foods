@@ -23,6 +23,8 @@ import Detail from "./components/Cards/Detail";
 import Form from "./components/Creation/Form";
 import About from "./components/About/About";
 
+const baseURL = 'http://localhost:3001'
+
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -80,7 +82,7 @@ function App() {
   }, [search, currentPage, orderBy, filterByDiet]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/recipes/all`)
+    fetch(`${baseURL}/recipes/all`)
       .then((response) => response.json())
       .then((data) => {
         let dailyMeals = [];
@@ -110,7 +112,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/diet/")
+    fetch(`${baseURL}/diet/`)
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => {
@@ -158,7 +160,7 @@ function App() {
 
   async function createRecipe(userData) {
     setLoading(true);
-    const response = await fetch("http://localhost:3001/recipes", {
+    const response = await fetch(`${baseURL}/recipes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -172,7 +174,7 @@ function App() {
 
   async function onSearch(name) {
     setLoading(true);
-    await fetch(`http://localhost:3001/recipes?name=${name}`)
+    await fetch(`${baseURL}/recipes?name=${name}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(getAllRecipes(data));

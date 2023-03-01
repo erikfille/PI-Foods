@@ -23,17 +23,8 @@
     "summary": "Un delicioso plato para desayunar o merendar, acompañando con un te",
     "instructions": "1) Prepara una mezcla liquida de harina de algarroba y harina comun, con agua y aceite. 2) Precalentar una sarten con un poco de aceite, y desparramar la mezcla de harina encima, dejando una capa fina solamente. 3) Cocinar vuelta y vuelta entre 5 y 10 minutos y retirar del fuego. 4) Rellenar con pasta de mani, banana y frutos secos. 5) Servir",
     "image": "https://dailydishar.files.wordpress.com/2017/07/19554607_1058528790949720_7657624415076498540_n.jpg",
-    "diets": [
-      "Vegan",
-      "Vegetarian",
-      "Lacto-Vegetarian",
-      "Ovo-Vegetarian",
-      "Pescetarian"
-    ],
-    "dishTypes": [
-      "Brunch",
-      "Breakfast"
-    ]
+    "diets": "Vegan, Vegetarian, Lacto-Vegetarian, Ovo-Vegetarian, Pescetarian",
+    "dishTypes": "Brunch, Breakfast"
   },
   "4": {
     "title": "Baba Ganoush",
@@ -41,17 +32,7 @@
     "summary": "El baba ganoush es una pasta o dip hecho a base de berenjenas, similar al hummus, que es típico de la cocina árabe. Está delicioso con pan pita y crudités.",
     "instructions": "1) Encender una hornalla y colocar la berenjena con la cascara directamente sobre el fuego. 2) Dejarlas carbonizar, dandolas vuelta con una pinza de cocina cada tanto, para evitar que se rompan. 3) Cuando esten listas, dejalas enfriar un rato. 4) Pela las berenjenas y procesa la carne cocinada de la misma con un poco de tahini, jugo de limon, perejil en trozos, aceite de oliva, una pizca de comino molido, sal y ajo. 5) Servir.",
     "image": "https://danzadefogones.com/wp-content/uploads/2020/01/Baba-Ganoush-2.jpg",
-    "diets": [
-      "Vegan",
-      "Vegetarian",
-      "Lacto-Vegetarian",
-      "Ovo-Vegetarian",
-      "Pescetarian"
-    ],
-    "dishTypes": [
-      "Starter Dish",
-      "Dip",
-      "Snack"
-    ]
+    "diets": "Vegan, Vegetarian, Lacto-Vegetarian, Ovo-Vegetarian, Pescetarian",
+    "dishTypes": "Starter Dish, Dip, Snack"
   }
 }

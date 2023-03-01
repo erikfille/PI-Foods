@@ -42,14 +42,14 @@ export default function Form(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     await createRecipe(inputs);
-    setErrors({
+    setInputs({
       title: "",
-      healthScore: "",
+      healthScore: 0,
       summary: "",
       instructions: "",
+      image: "",
       diets: "",
       dishTypes: "",
-      state: true,
     });
   }
 
