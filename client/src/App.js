@@ -23,7 +23,7 @@ import Detail from "./components/Cards/Detail";
 import Form from "./components/Creation/Form";
 import About from "./components/About/About";
 
-const baseURL = 'http://localhost:3001'
+const baseURL = "http://localhost:3001";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +41,9 @@ function App() {
     by: searchParams.get("by") || "Alphabetical",
     order: searchParams.get("order") || "Ascendant",
   });
-  const [filterByDiet, setFilterByDiet] = useState(searchParams.get("filter") || "All");
+  const [filterByDiet, setFilterByDiet] = useState(
+    searchParams.get("filter") || "All"
+  );
 
   const recipesPerPage = 9; // este estado local setea cuantas cartas entran por pagina
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -62,9 +64,12 @@ function App() {
     if (page) {
       paginator(page, "num");
     }
-    orderCards({...orderBy, by, order });
+    // verificar si recibo todo por query
+    // if (order || filter) {
+      orderCards({ ...orderBy, by, order });
+    // }
     filterRecipes(filter);
-  }, []);
+  }, []); // Agregar que escuche los cambios en la URL
 
   // Modifica la query segun el estado.
   useEffect(() => {

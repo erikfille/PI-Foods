@@ -9,6 +9,7 @@
   font-family: "raleway";
   margin: 20px;
   transition: all 0.75s;
+  min-width: 300px;
 }
 
 .cardContainer:hover {
